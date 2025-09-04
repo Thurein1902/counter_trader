@@ -3,614 +3,773 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Increase FX - FXロジック無料公開</title>
+    <title>Increase FX - Counter Trade Signals</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        /*
+        * CSS Zen Gardens
+        * フォント、文字サイズ、色、行間、字詰めなど、文字に関するプロパティだけを変更して、
+        * 元のデザインから都会的で洗練された印象に変更。
+        * AppleやGoogleのようなミニマルでクリーンなUIを目指しました。
+        */
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: 'Inter', 'Noto Sans JP', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            color: #1a1a1a;
             line-height: 1.6;
-            color: #202124;
-            background: #fff;
+            letter-spacing: -0.01em;
+            font-size: 1.09rem;
+            text-rendering: optimizeLegibility;
+            font-smooth: always;
+            -webkit-font-smoothing: antialiased;
+            background: #fcfcfd;
         }
 
-        .header {
-            background: #fff;
-            border-bottom: 1px solid #dadce0;
-            padding: 20px 0;
-            position: sticky;
+        /*
+        * ナビゲーション
+        */
+        .nav {
+            position: fixed;
             top: 0;
-            z-index: 100;
+            width: 100%;
+            backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.85);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            z-index: 1000;
+            padding: 16px 0;
         }
 
-        .container {
+        .nav-container {
             max-width: 1200px;
             margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             padding: 0 24px;
         }
-
-        .header-content {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
+        
+        /* ロゴ */
         .logo {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-            color: #202124;
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -0.05em;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #007AFF, #34C759);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-
-        .logo-icon {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, #4285f4, #34a853);
-            border-radius: 50%;
-            margin-right: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-            font-size: 18px;
-        }
-
-        .logo-text {
-            font-size: 24px;
-            font-weight: 400;
-            color: #202124;
-        }
-
+        
+        /* ナビゲーションリンク */
         .nav-links {
             display: flex;
-            gap: 32px;
+            gap: 40px;
+            list-style: none;
         }
 
         .nav-links a {
+            font-weight: 500;
+            font-size: 1rem;
+            letter-spacing: 0.01em;
+            color: #272829;
             text-decoration: none;
-            color: #5f6368;
-            font-size: 14px;
-            padding: 8px 0;
-            transition: color 0.2s;
+            transition: color 0.3s ease;
         }
 
         .nav-links a:hover {
-            color: #1a73e8;
+            color: #007AFF;
         }
 
+        /*
+        * ヒーローセクション
+        */
         .hero {
-            padding: 80px 0;
+            padding: 180px 24px 120px;
             text-align: center;
-            background: linear-gradient(135deg, #f8f9fa 0%, #e8f0fe 100%);
+            background: linear-gradient(180deg, #ffffff 0%, #fcfcfd 100%);
         }
 
         .hero h1 {
-            font-size: 48px;
-            font-weight: 400;
-            color: #202124;
-            margin-bottom: 16px;
+            font-size: 4.5rem;
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -0.05em;
+            color: #272829;
+            margin-bottom: 24px;
         }
 
         .hero p {
-            font-size: 20px;
-            color: #5f6368;
-            margin-bottom: 32px;
+            font-size: 1.25rem;
+            font-weight: 400;
+            color: #6e6e6e;
+            line-height: 1.7;
+            letter-spacing: 0.01em;
+            max-width: 700px;
+            margin: 0 auto 48px;
+        }
+
+        /*
+        * セクション共通
+        */
+        .section {
+            padding: 120px 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #fff;
+        }
+        
+        /* セクションタイトル */
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -0.03em;
+            color: #272829;
+            text-align: center;
+            margin-bottom: 12px;
+        }
+        
+        /* サマリー部分 */
+        .summary-box {
+            background: #fcfcfd;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+            margin: 0 auto 64px;
             max-width: 600px;
+        }
+        
+        .summary-box h3 {
+            font-size: 1.1rem;
+            color: #1a1a1a;
+            font-weight: 600;
+            margin-bottom: 8px;
+            letter-spacing: 0.02em;
+        }
+        
+        .summary-box p {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: #333333;
+            margin-bottom: 16px;
+            letter-spacing: 0.01em;
+        }
+
+        .summary-box .entry-signal {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            background: linear-gradient(90deg, #34C759, #007AFF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .summary-box .time-stamp {
+            font-size: 0.85rem;
+            color: #999;
+            margin-top: 16px;
+        }
+
+        .section-subtitle {
+            font-size: 1.15rem;
+            font-weight: 400;
+            color: #6e6e6e;
+            line-height: 1.8;
+            letter-spacing: 0.01em;
+            text-align: center;
+            margin-bottom: 72px;
+            max-width: 800px;
             margin-left: auto;
             margin-right: auto;
         }
 
-        .cta-button {
-            background: #1a73e8;
-            color: white;
-            padding: 12px 32px;
-            border: none;
-            border-radius: 6px;
-            font-size: 16px;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
-            transition: background 0.2s;
-        }
-
-        .cta-button:hover {
-            background: #1557b0;
-        }
-
-        .main-content {
-            padding: 60px 0;
-        }
-
-        .section-title {
-            font-size: 32px;
-            font-weight: 400;
-            color: #202124;
-            margin-bottom: 8px;
-            text-align: center;
-        }
-
-        .section-subtitle {
-            font-size: 16px;
-            color: #5f6368;
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .data-card {
-            background: #fff;
-            border: 1px solid #dadce0;
-            border-radius: 12px;
+        /*
+        * カードとテーブル
+        */
+        .card {
+            background: #fcfcfd;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            border-radius: 20px;
             padding: 32px;
-            margin-bottom: 32px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            backdrop-filter: blur(20px);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.03);
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(0, 122, 255, 0.2);
+            box-shadow: 0 16px 40px rgba(0, 122, 255, 0.08);
+        }
+
+        .table-container {
+            overflow-x: auto;
+            border-radius: 20px;
+            background: #fcfcfd;
+            border: 1px solid rgba(0, 0, 0, 0.05);
         }
 
         .data-table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 24px;
+            font-size: 1rem;
+            background: #fcfcfd;
         }
-
+        
         .data-table th {
-            background: #f8f9fa;
-            color: #202124;
+            background: #fafafc;
+            padding: 18px 16px;
+            text-align: center;
             font-weight: 500;
-            padding: 16px 12px;
-            text-align: left;
-            border-bottom: 2px solid #e8eaed;
-            font-size: 14px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            color: #888888;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
         .data-table td {
-            padding: 12px;
-            border-bottom: 1px solid #e8eaed;
-            font-size: 14px;
+            padding: 18px 16px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            background: #fcfcfd;
+            color: #666666;
+            font-size: 1rem;
+            text-align: center;
+            font-weight: 400;
+            letter-spacing: 0.01em;
         }
 
         .data-table tr:hover {
-            background: #f8f9fa;
+            background: #f9f9fb;
         }
 
-        .currency-pair {
-            font-weight: 500;
-            color: #1a73e8;
+        .pair-name {
+            font-weight: 600;
+            color: #1a1a1a !important;
+            font-size: 1.05rem !important;
         }
 
-        .ranking {
-            background: #e8f0fe;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 12px;
-            color: #1557b0;
+        .highlight-top3 {
+            font-weight: 700 !important;
+            font-size: 1.1rem !important;
+            color: #34C759 !important;
         }
 
-        .win-rate {
-            font-weight: 500;
+        .highlight-extreme-ranking {
+            font-weight: 600 !important;
+            color: #007AFF !important;
         }
 
-        .win-rate.high {
-            color: #137333;
+        .highlight-rsi-extreme {
+            font-weight: 700 !important;
+            font-size: 1.1rem !important;
+            color: #007AFF !important;
         }
 
-        .win-rate.medium {
-            color: #ea8600;
-        }
-
-        .win-rate.low {
-            color: #d93025;
-        }
-
-        .break-value {
-            font-weight: 500;
-            background: #f1f3f4;
-            padding: 4px 8px;
-            border-radius: 4px;
-        }
-
-        .info-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 24px;
-            margin-top: 40px;
-        }
-
-        .info-card {
-            background: #fff;
-            border: 1px solid #dadce0;
+        .entry-top3 {
+            background: rgba(52, 199, 89, 0.1);
+            color: #34C759;
+            font-weight: 600;
+            padding: 8px 16px;
             border-radius: 12px;
-            padding: 24px;
+            font-size: 0.95rem;
+            letter-spacing: 0.02em;
+        }
+
+        .entry-normal {
+            color: #888888;
+            font-weight: 400;
+            padding: 8px 16px;
+            font-size: 0.95rem;
+            letter-spacing: 0.02em;
+        }
+
+        /*
+        * Features セクション
+        */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            margin-top: 80px;
+        }
+
+        .feature {
+            text-align: left;
+            background: #fcfcfd;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            border-radius: 20px;
+            padding: 40px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.03);
+        }
+
+        .feature:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .feature h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin: 0 0 16px 0;
             text-align: center;
+            letter-spacing: -0.01em;
         }
 
-        .info-card h3 {
-            color: #1a73e8;
-            font-size: 18px;
-            margin-bottom: 12px;
+        .feature p {
+            font-size: 1rem;
+            font-weight: 400;
+            color: #6e6e6e;
+            line-height: 1.7;
+            letter-spacing: 0.01em;
+            margin: 0;
         }
 
-        .info-card p {
-            color: #5f6368;
-            font-size: 14px;
-            line-height: 1.5;
-        }
-
+        /*
+        * フッター
+        */
         .footer {
-            background: #f8f9fa;
-            border-top: 1px solid #dadce0;
-            padding: 40px 0;
+            background: #fafafc;
+            padding: 60px 24px;
             text-align: center;
-            color: #5f6368;
-            font-size: 14px;
+            border-top: 1px solid rgba(0, 0, 0, 0.08);
         }
 
-        .update-time {
-            background: #e8f0fe;
-            border: 1px solid #1a73e8;
-            border-radius: 8px;
-            padding: 12px 16px;
+        .footer p {
+            color: #aaaaaa;
+            font-size: 0.85rem;
+            line-height: 1.6;
+            letter-spacing: 0.02em;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
             margin-bottom: 24px;
-            display: inline-block;
-            color: #1557b0;
-            font-size: 14px;
         }
 
+        .footer-links a {
+            color: #007AFF;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            letter-spacing: 0.02em;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        /*
+        * ページ切り替え
+        */
+        .page {
+            display: none;
+            min-height: 80vh;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        .page h2 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            margin-bottom: 32px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #666666 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .page h3 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin: 32px 0 16px 0;
+            color: #1a1a1a;
+        }
+
+        .page p {
+            color: #666666;
+            line-height: 1.8;
+            margin-bottom: 16px;
+            font-weight: 300;
+        }
+
+        /*
+        * レスポンシブデザイン
+        */
         @media (max-width: 768px) {
             .hero h1 {
-                font-size: 36px;
+                font-size: 3.2rem;
+                line-height: 1.2;
             }
-            
+
             .hero p {
-                font-size: 18px;
+                font-size: 1.1rem;
             }
-            
+
+            .nav-links {
+                display: none;
+            }
+
             .data-table {
-                font-size: 12px;
+                font-size: 13px;
             }
-            
-            .data-table th,
+
             .data-table td {
-                padding: 8px 6px;
+                font-size: 12px;
+                padding: 12px 8px;
             }
+
+            .data-table th {
+                font-size: 12px;
+                padding: 12px 8px;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        /* スクロールインジケーター */
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #007AFF, #34C759);
+            transform-origin: left;
+            transform: scaleX(0);
+            z-index: 1001;
         }
     </style>
 </head>
 <body>
-    <header class="header">
-        <div class="container">
-            <div class="header-content">
-                <a href="#" class="logo">
-                    <div class="logo-icon">FX</div>
-                    <span class="logo-text">Increase FX</span>
-                </a>
-                <nav class="nav-links">
-                    <a href="#data">データ</a>
-                    <a href="#about">ロジックについて</a>
-                    <a href="#contact">お問い合わせ</a>
-                </nav>
+    <div class="scroll-indicator"></div>
+    
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="logo">Increase FX</div>
+            <ul class="nav-links">
+                <li><a href="#" onclick="showPage('home')">ホーム</a></li>
+                <li><a href="#" onclick="showPage('signals')">シグナル</a></li>
+                <li><a href="#" onclick="showPage('company')">運営会社</a></li>
+                <li><a href="#" onclick="showPage('disclaimer')">免責</a></li>
+                <li><a href="#" onclick="showPage('feedback')">フィードバック</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div id="home" class="page active">
+        <section class="hero">
+            <h1>Counter Trade<br>Signal System</h1>
+            <p>このサイトでは、1時間ごとにFXの逆張りチャンスを更新。勝率の高い通貨ペアをチェックして、そのままエントリーに活用できます。</p>
+        </section>
+
+        <section class="section" id="signals-section">
+            <h2 class="section-title">逆張り通貨ペアを発見</h2>
+            
+            <div class="summary-box">
+                <h3 id="summaryTitle"></h3>
+                <p><span id="summaryPair"></span> <span id="summaryEntry"></span></p>
             </div>
-        </div>
-    </header>
-
-    <section class="hero">
-        <div class="container">
-            <h1>FXロジックを無料公開</h1>
-            <p>プロトレーダーの分析手法とシグナルデータを、すべて無料で提供します。透明性の高いトレーディングで、あなたの投資判断をサポート。</p>
-            <a href="#data" class="cta-button">データを見る</a>
-        </div>
-    </section>
-
-    <main class="main-content">
-        <div class="container">
-            <section id="data">
-                <h2 class="section-title">4時間足テクニカル分析</h2>
-                <p class="section-subtitle">RSI、CCI、ボリンジャーバンド%Bによる総合ランキングと勝率データ</p>
-                
-                <div class="update-time">
-                    📊 最終更新: 2025年1月3日 16:00 JST
-                </div>
-
-                <div class="data-card">
+            
+            <p class="section-subtitle">4時間足ベースのRSI、CCI、BB%B分析による総合ランキングと勝率データ。なお、勝率はあくまで目安としてご覧ください。1が最強通貨、8が最弱通貨です。USDJPYが1/8なら、USDが最強でJPYが最弱です。逆張りなので、この場合は、Sellでエントリーすることになります。</p>
+            
+            <div class="card">
+                <div class="table-container">
                     <table class="data-table">
                         <thead>
                             <tr>
                                 <th>通貨ペア</th>
-                                <th>RSI_4H<br>ランキング</th>
-                                <th>CCI_4H<br>ランキング</th>
-                                <th>BB%B_4H<br>ランキング</th>
-                                <th>RSI_4H<br>ブレイク</th>
-                                <th>総合<br>ブレイク</th>
+                                <th>RSI強弱</th>
+                                <th>CCI強弱</th>
+                                <th>BB%B強弱</th>
+                                <th>RSI(4H)</th>
+                                <th>総合強弱</th>
                                 <th>勝率</th>
+                                <th>エントリー</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td class="currency-pair">USDJPY</td>
-                                <td><span class="ranking">1/7</span></td>
-                                <td><span class="ranking">2/7</span></td>
-                                <td><span class="ranking">1/8</span></td>
-                                <td><span class="break-value">64</span></td>
-                                <td><span class="ranking">1/7</span></td>
-                                <td><span class="win-rate medium">55%</span></td>
-                            </tr>
-                            <tr>
-                                <td class="currency-pair">EURJPY</td>
-                                <td><span class="ranking">4/7</span></td>
-                                <td><span class="ranking">6/7</span></td>
-                                <td><span class="ranking">4/8</span></td>
-                                <td><span class="break-value">63</span></td>
-                                <td><span class="ranking">4/7</span></td>
-                                <td><span class="win-rate low">48%</span></td>
-                            </tr>
-                            <tr>
-                                <td class="currency-pair">GBPJPY</td>
-                                <td><span class="ranking">8/7</span></td>
-                                <td><span class="ranking">8/7</span></td>
-                                <td><span class="ranking">7/8</span></td>
-                                <td><span class="break-value">49</span></td>
-                                <td><span class="ranking">8/7</span></td>
-                                <td><span class="win-rate low">34%</span></td>
-                            </tr>
-                            <tr>
-                                <td class="currency-pair">AUDJPY</td>
-                                <td><span class="ranking">3/7</span></td>
-                                <td><span class="ranking">1/7</span></td>
-                                <td><span class="ranking">3/8</span></td>
-                                <td><span class="break-value">65</span></td>
-                                <td><span class="ranking">2/7</span></td>
-                                <td><span class="win-rate low">48%</span></td>
-                            </tr>
-                            <tr>
-                                <td class="currency-pair">NZDJPY</td>
-                                <td><span class="ranking">6/7</span></td>
-                                <td><span class="ranking">4/7</span></td>
-                                <td><span class="ranking">6/8</span></td>
-                                <td><span class="break-value">59</span></td>
-                                <td><span class="ranking">6/7</span></td>
-                                <td><span class="win-rate low">46%</span></td>
-                            </tr>
-                            <tr>
-                                <td class="currency-pair">CADJPY</td>
-                                <td><span class="ranking">2/7</span></td>
-                                <td><span class="ranking">3/7</span></td>
-                                <td><span class="ranking">2/8</span></td>
-                                <td><span class="break-value">66</span></td>
-                                <td><span class="ranking">3/7</span></td>
-                                <td><span class="win-rate high">72%</span></td>
-                            </tr>
-                            <tr>
-                                <td class="currency-pair">CHFJPY</td>
-                                <td><span class="ranking">5/7</span></td>
-                                <td><span class="ranking">5/7</span></td>
-                                <td><span class="ranking">5/8</span></td>
-                                <td><span class="break-value">60</span></td>
-                                <td><span class="ranking">5/7</span></td>
-                                <td><span class="win-rate low">39%</span></td>
-                            </tr>
-                            <tr>
-                                <td class="currency-pair">EURUSD</td>
-                                <td><span class="ranking">4/1</span></td>
-                                <td><span class="ranking">6/2</span></td>
-                                <td><span class="ranking">4/1</span></td>
-                                <td><span class="break-value">43</span></td>
-                                <td><span class="ranking">4/1</span></td>
-                                <td><span class="win-rate low">39%</span></td>
-                            </tr>
-                            <tr>
-                                <td class="currency-pair">AUDUSD</td>
-                                <td><span class="ranking">3/1</span></td>
-                                <td><span class="ranking">1/2</span></td>
-                                <td><span class="ranking">3/1</span></td>
-                                <td><span class="break-value">47</span></td>
-                                <td><span class="ranking">2/1</span></td>
-                                <td><span class="win-rate medium">54%</span></td>
-                            </tr>
-                            <tr>
-                                <td class="currency-pair">GBPUSD</td>
-                                <td><span class="ranking">8/1</span></td>
-                                <td><span class="ranking">8/2</span></td>
-                                <td><span class="ranking">7/1</span></td>
-                                <td><span class="break-value">35</span></td>
-                                <td><span class="ranking">8/1</span></td>
-                                <td><span class="win-rate high">67%</span></td>
-                            </tr>
-                            <tr>
-                                <td class="currency-pair">NZDUSD</td>
-                                <td><span class="ranking">6/1</span></td>
-                                <td><span class="ranking">4/2</span></td>
-                                <td><span class="ranking">6/1</span></td>
-                                <td><span class="break-value">43</span></td>
-                                <td><span class="ranking">6/1</span></td>
-                                <td><span class="win-rate low">47%</span></td>
-                            </tr>
-                            <tr>
-                                <td class="currency-pair">USDCHF</td>
-                                <td><span class="ranking">1/5</span></td>
-                                <td><span class="ranking">2/5</span></td>
-                                <td><span class="ranking">1/5</span></td>
-                                <td><span class="break-value">58</span></td>
-                                <td><span class="ranking">1/5</span></td>
-                                <td><span class="win-rate low">36%</span></td>
-                            </tr>
-                            <tr>
-                                <td class="currency-pair">USDCAD</td>
-                                <td><span class="ranking">1/2</span></td>
-                                <td><span class="ranking">2/3</span></td>
-                                <td><span class="ranking">1/2</span></td>
-                                <td><span class="break-value">56</span></td>
-                                <td><span class="ranking">1/3</span></td>
-                                <td><span class="win-rate low">36%</span></td>
-                            </tr>
-                            <tr>
-                                <td class="currency-pair">EURGBP</td>
-                                <td><span class="ranking">4/8</span></td>
-                                <td><span class="ranking">6/8</span></td>
-                                <td><span class="ranking">4/7</span></td>
-                                <td><span class="break-value">65</span></td>
-                                <td><span class="ranking">4/8</span></td>
-                                <td><span class="win-rate low">39%</span></td>
-                            </tr>
-                            <tr>
-                                <td class="currency-pair">EURAUD</td>
-                                <td><span class="ranking">4/3</span></td>
-                                <td><span class="ranking">6/1</span></td>
-                                <td><span class="ranking">4/3</span></td>
-                                <td><span class="break-value">47</span></td>
-                                <td><span class="ranking">4/2</span></td>
-                                <td><span class="win-rate low">34%</span></td>
-                            </tr>
-                            <tr>
-                                <td class="currency-pair">EURCAD</td>
-                                <td><span class="ranking">4/2</span></td>
-                                <td><span class="ranking">6/3</span></td>
-                                <td><span class="ranking">4/2</span></td>
-                                <td><span class="break-value">44</span></td>
-                                <td><span class="ranking">4/3</span></td>
-                                <td><span class="win-rate low">39%</span></td>
-                            </tr>
-                            <tr>
-                                <td class="currency-pair">EURCHF</td>
-                                <td><span class="ranking">4/5</span></td>
-                                <td><span class="ranking">6/5</span></td>
-                                <td><span class="ranking">4/5</span></td>
-                                <td><span class="break-value">51</span></td>
-                                <td><span class="ranking">4/5</span></td>
-                                <td><span class="win-rate low">36%</span></td>
-                            </tr>
-                            <tr>
-                                <td class="currency-pair">EURNZD</td>
-                                <td><span class="ranking">4/6</span></td>
-                                <td><span class="ranking">6/4</span></td>
-                                <td><span class="ranking">4/6</span></td>
-                                <td><span class="break-value">54</span></td>
-                                <td><span class="ranking">4/6</span></td>
-                                <td><span class="win-rate low">31%</span></td>
-                            </tr>
-                            <tr>
-                                <td class="currency-pair">GBPAUD</td>
-                                <td><span class="ranking">8/3</span></td>
-                                <td><span class="ranking">8/1</span></td>
-                                <td><span class="ranking">7/3</span></td>
-                                <td><span class="break-value">36</span></td>
-                                <td><span class="ranking">8/2</span></td>
-                                <td><span class="win-rate medium">58%</span></td>
-                            </tr>
-                            <tr>
-                                <td class="currency-pair">GBPCHF</td>
-                                <td><span class="ranking">8/5</span></td>
-                                <td><span class="ranking">8/5</span></td>
-                                <td><span class="ranking">7/5</span></td>
-                                <td><span class="break-value">42</span></td>
-                                <td><span class="ranking">8/5</span></td>
-                                <td><span class="win-rate low">39%</span></td>
-                            </tr>
-                            <tr>
-                                <td class="currency-pair">GBPCAD</td>
-                                <td><span class="ranking">8/2</span></td>
-                                <td><span class="ranking">8/3</span></td>
-                                <td><span class="ranking">7/2</span></td>
-                                <td><span class="break-value">33</span></td>
-                                <td><span class="ranking">8/3</span></td>
-                                <td><span class="win-rate medium">57%</span></td>
-                            </tr>
-                            <tr>
-                                <td class="currency-pair">GBPNZD</td>
-                                <td><span class="ranking">8/6</span></td>
-                                <td><span class="ranking">8/4</span></td>
-                                <td><span class="ranking">7/6</span></td>
-                                <td><span class="break-value">42</span></td>
-                                <td><span class="ranking">8/6</span></td>
-                                <td><span class="win-rate low">39%</span></td>
-                            </tr>
-                            <tr>
-                                <td class="currency-pair">AUDCAD</td>
-                                <td><span class="ranking">3/2</span></td>
-                                <td><span class="ranking">1/3</span></td>
-                                <td><span class="ranking">3/2</span></td>
-                                <td><span class="break-value">49</span></td>
-                                <td><span class="ranking">2/3</span></td>
-                                <td><span class="win-rate low">34%</span></td>
-                            </tr>
-                            <tr>
-                                <td class="currency-pair">AUDCHF</td>
-                                <td><span class="ranking">3/5</span></td>
-                                <td><span class="ranking">1/5</span></td>
-                                <td><span class="ranking">3/5</span></td>
-                                <td><span class="break-value">53</span></td>
-                                <td><span class="ranking">2/5</span></td>
-                                <td><span class="win-rate low">31%</span></td>
-                            </tr>
-                            <tr>
-                                <td class="currency-pair">AUDNZD</td>
-                                <td><span class="ranking">3/6</span></td>
-                                <td><span class="ranking">1/4</span></td>
-                                <td><span class="ranking">3/6</span></td>
-                                <td><span class="break-value">61</span></td>
-                                <td><span class="ranking">2/6</span></td>
-                                <td><span class="win-rate low">42%</span></td>
-                            </tr>
-                            <tr>
-                                <td class="currency-pair">CADCHF</td>
-                                <td><span class="ranking">2/5</span></td>
-                                <td><span class="ranking">3/5</span></td>
-                                <td><span class="ranking">2/5</span></td>
-                                <td><span class="break-value">55</span></td>
-                                <td><span class="ranking">3/5</span></td>
-                                <td><span class="win-rate low">36%</span></td>
-                            </tr>
-                            <tr>
-                                <td class="currency-pair">NZDCAD</td>
-                                <td><span class="ranking">6/2</span></td>
-                                <td><span class="ranking">4/3</span></td>
-                                <td><span class="ranking">6/2</span></td>
-                                <td><span class="break-value">43</span></td>
-                                <td><span class="ranking">6/3</span></td>
-                                <td><span class="win-rate low">42%</span></td>
-                            </tr>
-                            <tr>
-                                <td class="currency-pair">NZDCHF</td>
-                                <td><span class="ranking">6/5</span></td>
-                                <td><span class="ranking">4/5</span></td>
-                                <td><span class="ranking">6/5</span></td>
-                                <td><span class="break-value">49</span></td>
-                                <td><span class="ranking">6/5</span></td>
-                                <td><span class="win-rate low">34%</span></td>
-                            </tr>
+                        <tbody id="dataTable">
+                            <!-- データはJavaScriptで挿入 -->
                         </tbody>
                     </table>
                 </div>
+            </div>
+        </section>
 
-                <div class="info-cards">
-                    <div class="info-card">
-                        <h3>RSI（相対力指数）</h3>
-                        <p>4時間足でのRSIランキング。買われすぎ・売られすぎの判定に使用し、逆張りシグナルの参考にします。</p>
-                    </div>
-                    <div class="info-card">
-                        <h3>CCI（商品チャネル指数）</h3>
-                        <p>価格の循環的な動きを捉える指標。±100を超えた場合の反転可能性を分析しています。</p>
-                    </div>
-                    <div class="info-card">
-                        <h3>BB%B（ボリンジャーバンド%B）</h3>
-                        <p>ボリンジャーバンド内での価格位置を示す指標。バンドウォークやスクイーズの判定に活用。</p>
-                    </div>
-                    <div class="info-card">
-                        <h3>総合勝率</h3>
-                        <p>過去のシグナル実績に基づく勝率データ。60%以上を高勝率、40%未満を低勝率として分類しています。</p>
-                    </div>
+        <section class="section">
+            <h2 class="section-title">分析手法</h2>
+            <p class="section-subtitle">3つの主要テクニカル指標を組み合わせた独自の逆張り分析システム</p>
+            
+            <div class="features">
+                <div class="feature">
+                    <h3>RSI分析</h3>
+                    <p>4時間足RSIによる過買い・過売り判定。相対力指数を用いて市場の転換点を特定し、逆張りエントリーポイントを算出します。</p>
                 </div>
-            </section>
-        </div>
-    </main>
+                <div class="feature">
+                    <h3>CCI分析</h3>
+                    <p>商品チャネル指数による価格トレンドの強弱判定。市場のモメンタムを数値化し、逆張りに最適なタイミングを見極めます。</p>
+                </div>
+                <div class="feature">
+                    <h3>BB%B分析</h3>
+                    <p>ボリンジャーバンド%Bによるバンド内ポジション分析。価格の相対的位置を評価し、反転ポイントを予測します。</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">システム概要</h2>
+            <div class="features">
+                <div class="feature">
+                    <h3>高精度シグナル</h3>
+                    <p>複数指標の組み合わせにより、単一指標では捉えきれない市場の転換点を分析。逆張りに特化したアルゴリズムで高い勝率を実現。</p>
+                </div>
+                <div class="feature">
+                    <h3>リアルタイム更新</h3>
+                    <p>市場の変動に合わせて1時間毎にデータを更新。常に最新の市場状況を反映した逆張りシグナルを提供します。</p>
+                </div>
+                <div class="feature">
+                    <h3>完全無料公開</h3>
+                    <p>プロレベルの逆張り分析ロジックを無償で公開。透明性の高い手法で、誰でも検証可能な分析結果を提供します。</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="signals" class="page">
+        <section class="section">
+            <h2>シグナル詳細</h2>
+            <p>こちらのページでは、より詳細なシグナル分析と過去のパフォーマンスデータをご確認いただけます。</p>
+            <p>各通貨ペアの詳細な分析結果、エントリー・エグジットポイント、リスク管理手法などを掲載予定です。</p>
+        </section>
+    </div>
+
+    <div id="company" class="page">
+        <section class="section">
+            <h2>運営会社</h2>
+            <h3>会社概要</h3>
+            <p>Increase FXは、プロフェッショナルなFX分析手法を無料で提供することを目的として設立されました。</p>
+            
+            <h3>ミッション</h3>
+            <p>私たちのミッションは、高品質なFX分析ツールを誰でもアクセス可能な形で提供し、トレーダーの皆様の成功をサポートすることです。</p>
+            
+            <h3>運営方針</h3>
+            <p>完全無料でのサービス提供を継続し、透明性の高い分析手法の公開により、FXトレーディングコミュニティの発展に貢献します。</p>
+            
+            <h3>お問い合わせ</h3>
+            <p>ご質問やご要望がございましたら、フィードバックページよりお気軽にお問い合わせください。</p>
+        </section>
+    </div>
+
+    <div id="disclaimer" class="page">
+        <section class="section">
+            <h2>免責事項</h2>
+            
+            <h3>投資リスクについて</h3>
+            <p>FX取引は高いリスクを伴う投資行為です。レバレッジ効果により、投資元本を上回る損失が発生する可能性があります。</p>
+            
+            <h3>情報の利用について</h3>
+            <p>本サイトで提供される情報は、投資の参考情報として提供されており、投資の推奨や勧誘を目的としたものではありません。</p>
+            
+            <h3>投資判断の責任</h3>
+            <p>すべての投資判断は、利用者ご自身の責任において行ってください。本サイトの情報を利用した結果生じる損失について、当サイトは一切の責任を負いません。</p>
+            
+            <h3>情報の正確性について</h3>
+            <p>本サイトの情報は正確性を期しておりますが、完全性や適時性を保証するものではありません。市場の変動により、情報が古くなる場合があります。</p>
+            
+            <h3>リスク管理の重要性</h3>
+            <p>FX取引を行う際は、適切なリスク管理を行い、余裕資金の範囲内で取引を行うことを強く推奨します。</p>
+        </section>
+    </div>
+
+    <div id="feedback" class="page">
+        <section class="section">
+            <h2>フィードバック</h2>
+            
+            <h3>ご意見・ご要望をお聞かせください</h3>
+            <p>Increase FXをより良いサービスにするため、皆様からのフィードバックをお待ちしております。</p>
+            
+            <div class="card">
+                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSexample/viewform?embedded=true" width="100%" height="500" frameborder="0" marginheight="0" marginwidth="0">読み込んでいます…</iframe>
+                <p style="margin-top: 20px; text-align: center; color: #6e6e6e; font-size: 0.95rem; line-height: 1.6; letter-spacing: 0.02em;">
+                    ※ 上記フォームが表示されない場合は、ブラウザの設定でCookieを有効にしてください
+                </p>
+            </div>
+            
+            <div style="margin-top: 40px; text-align: center;">
+                <p style="color: #6e6e6e; line-height: 1.8; letter-spacing: 0.01em;">お送りいただいたフィードバックは、サービス改善のために活用させていただきます。</p>
+                <p style="color: #6e6e6e; margin-top: 8px; line-height: 1.8; letter-spacing: 0.01em;">個別の回答をご希望の場合は、メールアドレスをご記入ください。</p>
+            </div>
+        </section>
+    </div>
 
     <footer class="footer">
-        <div class="container">
-            <p>&copy; 2025 Increase FX. このデータは教育目的で提供されており、投資助言ではありません。</p>
-            <p>取引にはリスクが伴います。自己責任でご利用ください。</p>
+        <div class="footer-links">
+            <a href="#" onclick="showPage('company')">運営会社</a>
+            <a href="#" onclick="showPage('disclaimer')">免責事項</a>
+            <a href="#" onclick="showPage('feedback')">フィードバック</a>
         </div>
+        <p>&copy; 2025 Increase FX. Counter trade analysis made accessible to everyone.</p>
     </footer>
+
+    <script>
+        // ページ切り替え機能
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById(pageId).classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        // スクロールインジケーター
+        window.addEventListener('scroll', () => {
+            const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            document.querySelector('.scroll-indicator').style.transform = `scaleX(${scrolled / 100})`;
+        });
+
+        // データテーブルの生成
+        const tableData = [
+            ['USDJPY', '1/7', '2/7', '1/8', '75', '1/7', '55%'],
+            ['EURJPY', '4/7', '6/7', '4/8', '63', '4/7', '48%'],
+            ['GBPJPY', '8/7', '8/7', '7/8', '49', '8/7', '34%'],
+            ['AUDJPY', '3/7', '1/7', '3/8', '65', '2/7', '48%'],
+            ['NZDJPY', '6/7', '4/7', '6/8', '59', '6/7', '46%'],
+            ['CADJPY', '2/7', '3/7', '2/8', '66', '3/7', '72%'],
+            ['CHFJPY', '5/7', '5/7', '5/8', '60', '5/7', '39%'],
+            ['EURUSD', '4/1', '6/2', '4/1', '20', '4/1', '39%'],
+            ['AUDUSD', '3/1', '1/2', '3/1', '47', '2/1', '54%'],
+            ['GBPUSD', '8/1', '8/2', '7/1', '35', '8/1', '67%'],
+            ['NZDUSD', '6/1', '4/2', '6/1', '43', '6/1', '47%'],
+            ['USDCHF', '1/5', '2/5', '1/5', '58', '1/5', '36%'],
+            ['USDCAD', '1/2', '2/3', '1/2', '56', '1/3', '36%'],
+            ['EURGBP', '4/8', '6/8', '4/7', '65', '4/8', '39%'],
+            ['EURAUD', '4/3', '6/1', '4/3', '47', '4/2', '34%'],
+            ['EURCAD', '4/2', '6/3', '4/2', '44', '4/3', '39%'],
+            ['EURCHF', '4/5', '6/5', '4/5', '51', '4/5', '36%'],
+            ['EURNZD', '4/6', '6/4', '4/6', '54', '4/6', '31%'],
+            ['GBPAUD', '8/3', '8/1', '7/3', '36', '8/2', '58%'],
+            ['GBPCHF', '8/5', '8/5', '7/5', '42', '8/5', '39%'],
+            ['GBPCAD', '8/2', '8/3', '7/2', '33', '8/3', '57%'],
+            ['GBPNZD', '8/6', '8/4', '7/6', '42', '8/6', '39%'],
+            ['AUDCAD', '3/2', '1/3', '3/2', '49', '2/3', '34%'],
+            ['AUDCHF', '3/5', '1/5', '3/5', '53', '2/5', '31%'],
+            ['AUDNZD', '3/6', '1/4', '3/6', '61', '2/6', '42%'],
+            ['CADCHF', '2/5', '3/5', '2/5', '55', '3/5', '36%'],
+            ['NZDCAD', '6/2', '4/3', '6/2', '43', '6/3', '42%'],
+            ['NZDCHF', '6/5', '4/5', '6/5', '49', '6/5', '34%']
+        ];
+
+        // ページ読み込み時にサマリーを生成する
+        function generateSummary() {
+            const now = new Date();
+            const lastUpdatedTime = now.toLocaleTimeString('ja-JP', { hour: '2-digit', minute: '2-digit' });
+            
+            const summaryTitle = document.getElementById('summaryTitle');
+            const summaryPair = document.getElementById('summaryPair');
+            const summaryEntry = document.getElementById('summaryEntry');
+            
+            // 勝率トップのデータを取得
+            const topPair = tableData.slice().sort((a, b) => {
+                const winRateA = parseInt(a[6]);
+                const winRateB = parseInt(b[6]);
+                return winRateB - winRateA;
+            })[0];
+
+            if (topPair) {
+                const pairName = topPair[0];
+                const entrySignal = getEntrySignal(topPair[1]);
+                
+                summaryTitle.textContent = `${lastUpdatedTime}のおすすめ通貨ペア`;
+                summaryPair.textContent = pairName;
+                summaryEntry.textContent = entrySignal;
+                summaryEntry.classList.add('entry-signal');
+            }
+        }
+
+        // データテーブルの生成
+        function populateTable() {
+            const tbody = document.getElementById('dataTable');
+            const top3Rates = getTop3WinRatesWithMedals();
+            const top3WinRates = Object.keys(top3Rates);
+            
+            tableData.forEach(row => {
+                const tr = document.createElement('tr');
+                const entrySignal = getEntrySignal(row[1]);
+                const winRate = row[6];
+                const isTop3 = top3WinRates.includes(winRate);
+                const medal = top3Rates[winRate] || '';
+                
+                tr.innerHTML = `
+                    <td class="pair-name">${row[0]}</td>
+                    <td class="${isExtremeRanking(row[1]) ? 'highlight-extreme-ranking' : ''}">${row[1]}</td>
+                    <td class="${isExtremeRanking(row[2]) ? 'highlight-extreme-ranking' : ''}">${row[2]}</td>
+                    <td class="${isExtremeRanking(row[3]) ? 'highlight-extreme-ranking' : ''}">${row[3]}</td>
+                    <td class="${isExtremeRSI(row[4]) ? 'highlight-rsi-extreme' : ''}">${row[4]}</td>
+                    <td class="${isExtremeRanking(row[5]) ? 'highlight-extreme-ranking' : ''}">${row[5]}</td>
+                    <td class="${isTop3 ? 'highlight-top3' : ''}">${medal}${row[6]}</td>
+                    <td><span class="${isTop3 ? 'entry-top3' : 'entry-normal'}">${entrySignal}</span></td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function getEntrySignal(rsiRanking) {
+            const leftNumber = parseInt(rsiRanking.split('/')[0]);
+            const rightNumber = parseInt(rsiRanking.split('/')[1]);
+            return leftNumber > rightNumber ? 'Buy' : 'Sell';
+        }
+
+        function isExtremeRanking(value) {
+            return value === '1/8' || value === '8/1';
+        }
+
+        function isExtremeRSI(value) {
+            const num = parseInt(value);
+            return num >= 70 || num <= 30;
+        }
+
+        function getTop3WinRatesWithMedals() {
+            const rates = tableData
+                .map((row, index) => ({ index, rate: parseInt(row[6]), percentage: row[6], pair: row[0] }))
+                .filter(item => item.rate >= 50)
+                .sort((a, b) => b.rate - a.rate)
+                .slice(0, 3);
+            
+            const medals = ['🥇', '🥈', '🥉'];
+            const result = {};
+            
+            rates.forEach((item, index) => {
+                result[item.percentage] = medals[index] || '';
+            });
+            
+            return result;
+        }
+
+        // 初期化
+        document.addEventListener('DOMContentLoaded', () => {
+            populateTable();
+            generateSummary();
+        });
+    </script>
 </body>
 </html>

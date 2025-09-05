@@ -677,7 +677,9 @@ async function loadForexData() {
         showLoading(true);
         
         // Load data from fx_signals.json in root directory
-        const response = await fetch('./fx_signals.json');
+        //const response = await fetch('./fx_signals.json');
+
+        const response = await fetch('./fx_signals.json?' + new Date().getTime());
         
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);

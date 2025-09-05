@@ -766,8 +766,10 @@ function processForexData(data) {
 // Generate summary section
 function generateSummary() {
     const now = new Date();
-    const lastUpdatedTime = now.toLocaleTimeString('ja-JP', { hour: '2-digit', minute: '2-digit' });
-    
+    //const lastUpdatedTime = now.toLocaleTimeString('ja-JP', { hour: '2-digit', minute: '2-digit' });
+    const hour = now.toLocaleTimeString('en-GB', { hour: '2-digit', hour12: false });
+    const lastUpdatedTime = `${hour}:00`;
+
     const summaryTitle = document.getElementById('summaryTitle');
     const summaryPair = document.getElementById('summaryPair');
     const summaryEntry = document.getElementById('summaryEntry');

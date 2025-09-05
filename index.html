@@ -460,6 +460,22 @@
             transform: scaleX(0);
             z-index: 1001;
         }
+
+        /* Loading indicator */
+        .loading {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+        }
+
+        .error {
+            text-align: center;
+            padding: 20px;
+            color: #ff4444;
+            background: #ffe6e6;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
     </style>
 </head>
 <body>
@@ -488,14 +504,17 @@
             <h2 class="section-title">逆張り通貨ペアを発見</h2>
             
             <div class="summary-box">
-                <h3 id="summaryTitle"></h3>
+                <h3 id="summaryTitle">データ読み込み中...</h3>
                 <p><span id="summaryPair"></span> <span id="summaryEntry"></span></p>
+                <div id="summaryTime" class="time-stamp"></div>
             </div>
             
             <p class="section-subtitle">4時間足ベースのRSI、CCI、BB%B分析による総合ランキングと勝率データ。なお、勝率はあくまで目安としてご覧ください。1が最強通貨、8が最弱通貨です。USDJPYが1/8なら、USDが最強でJPYが最弱です。逆張りなので、この場合は、Sellでエントリーすることになります。</p>
             
             <div class="card">
-                <div class="table-container">
+                <div id="loadingIndicator" class="loading">データを読み込んでいます...</div>
+                <div id="errorIndicator" class="error" style="display: none;"></div>
+                <div class="table-container" id="tableContainer" style="display: none;">
                     <table class="data-table">
                         <thead>
                             <tr>
@@ -528,7 +547,7 @@
                 </div>
                 <div class="feature">
                     <h3>CCI分析</h3>
-                    <p>商品チャネル指数による価格トレンドの強弱判定。市場のモメンタムを数値化し、逆張りに最適なタイミングを見極めます。</p>
+                    <p>商品チャンネル指数による価格トレンドの強弱判定。市場のモメンタムを数値化し、逆張りに最適なタイミングを見極めます。</p>
                 </div>
                 <div class="feature">
                     <h3>BB%B分析</h3>
@@ -559,7 +578,7 @@
     <div id="signals" class="page">
         <section class="section">
             <h2>シグナル詳細</h2>
-            <p>こちらのページでは、より詳細なシグナル分析と過去のパフォーマンスデータをご確認いただけます。 </p>
+            <p>こちらのページでは、より詳細なシグナル分析と過去のパフォーマンスデータをご確認いただけます。</p>
             <p>各通貨ペアの詳細な分析結果、エントリー・エグジットポイント、リスク管理手法などを掲載予定です。</p>
         </section>
     </div>
@@ -633,144 +652,314 @@
     </footer>
 
     <script>
-        // ページ切り替え機能
-        function showPage(pageId) {
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.remove('active');
-            });
-            document.getElementById(pageId).classList.add('active');
-            window.scrollTo(0, 0);
+// Global variables for forex data
+let forexData = null;
+let processedTableData = [];
+
+// Page switching functionality
+function showPage(pageId) {
+    document.querySelectorAll('.page').forEach(page => {
+        page.classList.remove('active');
+    });
+    document.getElementById(pageId).classList.add('active');
+    window.scrollTo(0, 0);
+}
+
+// Scroll indicator
+window.addEventListener('scroll', () => {
+    const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+    document.querySelector('.scroll-indicator').style.transform = `scaleX(${scrolled / 100})`;
+});
+
+// Load JSON data function
+async function loadForexData() {
+    try {
+        showLoading(true);
+        
+        // Load data from fx_signals.json in root directory
+        const response = await fetch('./fx_signals.json');
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
         }
+        
+        const data = await response.json();
+        forexData = data.forexData;
+        
+        // Process and display the data
+        processedTableData = processForexData(forexData);
+        populateTable();
+        generateSummary();
+        showLoading(false);
+        
+        console.log('Forex data loaded successfully from fx_signals.json');
+        
+    } catch (error) {
+        console.error('Error loading forex data:', error);
+        
+        // Enhanced error message for different scenarios
+        let errorMessage = 'データの読み込みに失敗しました。';
+        
+        if (error.message.includes('Failed to fetch')) {
+            errorMessage = 'JSONファイルが見つかりません。fx_signals.jsonがindex.htmlと同じフォルダにあることを確認してください。';
+        } else if (error.message.includes('404')) {
+            errorMessage = 'fx_signals.jsonファイルが見つかりません。ファイルパスを確認してください。';
+        } else if (error.message.includes('Unexpected token')) {
+            errorMessage = 'JSONファイルの形式が正しくありません。ファイル内容を確認してください。';
+        }
+        
+        showError(errorMessage);
+    }
+}
 
-        // スクロールインジケーター
-        window.addEventListener('scroll', () => {
-            const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-            document.querySelector('.scroll-indicator').style.transform = `scaleX(${scrolled / 100})`;
+// Show/hide loading indicator
+function showLoading(show) {
+    const loadingIndicator = document.getElementById('loadingIndicator');
+    const tableContainer = document.getElementById('tableContainer');
+    const errorIndicator = document.getElementById('errorIndicator');
+    
+    if (show) {
+        loadingIndicator.style.display = 'block';
+        tableContainer.style.display = 'none';
+        errorIndicator.style.display = 'none';
+    } else {
+        loadingIndicator.style.display = 'none';
+        tableContainer.style.display = 'block';
+    }
+}
+
+// Show error message
+function showError(message) {
+    const loadingIndicator = document.getElementById('loadingIndicator');
+    const tableContainer = document.getElementById('tableContainer');
+    const errorIndicator = document.getElementById('errorIndicator');
+    
+    loadingIndicator.style.display = 'none';
+    tableContainer.style.display = 'none';
+    errorIndicator.style.display = 'block';
+    errorIndicator.innerHTML = `
+        <strong>エラー:</strong> ${message}<br>
+        <small>ローカルサーバーを使用することをお勧めします。</small><br>
+        <button onclick="loadForexData()" style="margin-top: 10px; padding: 5px 10px; background: #007AFF; color: white; border: none; border-radius: 4px; cursor: pointer;">再試行</button>
+    `;
+}
+
+// Process forex data into table format
+function processForexData(data) {
+    const processed = [];
+    
+    for (const [pairName, pairData] of Object.entries(data)) {
+        processed.push({
+            pair: pairName,
+            currencyStrength: pairData.Currency_Strength_Rank_all_pair,
+            cciStrength: pairData.CCI_Currency_Strength_Rank_all_pair,
+            bbPercent: pairData.BB_percent_ranking,
+            rsiBreakout: pairData.RSI_breakout,
+            overallRanking: pairData.Overall_Ranking,
+            confidence: pairData.Confidence
         });
+    }
+    
+    return processed;
+}
 
-        // データテーブルの生成
-        const tableData = [
-            ['USDJPY', '1/7', '2/7', '1/8', '75', '1/7', '55%'],
-            ['EURJPY', '4/7', '6/7', '4/8', '63', '4/7', '48%'],
-            ['GBPJPY', '8/7', '8/7', '7/8', '49', '8/7', '34%'],
-            ['AUDJPY', '3/7', '1/7', '3/8', '65', '2/7', '48%'],
-            ['NZDJPY', '6/7', '4/7', '6/8', '59', '6/7', '46%'],
-            ['CADJPY', '2/7', '3/7', '2/8', '66', '3/7', '72%'],
-            ['CHFJPY', '5/7', '5/7', '5/8', '60', '5/7', '39%'],
-            ['EURUSD', '4/1', '6/2', '4/1', '20', '4/1', '39%'],
-            ['AUDUSD', '3/1', '1/2', '3/1', '47', '2/1', '54%'],
-            ['GBPUSD', '8/1', '8/2', '7/1', '35', '8/1', '67%'],
-            ['NZDUSD', '6/1', '4/2', '6/1', '43', '6/1', '47%'],
-            ['USDCHF', '1/5', '2/5', '1/5', '58', '1/5', '36%'],
-            ['USDCAD', '1/2', '2/3', '1/2', '56', '1/3', '36%'],
-            ['EURGBP', '4/8', '6/8', '4/7', '65', '4/8', '39%'],
-            ['EURAUD', '4/3', '6/1', '4/3', '47', '4/2', '34%'],
-            ['EURCAD', '4/2', '6/3', '4/2', '44', '4/3', '39%'],
-            ['EURCHF', '4/5', '6/5', '4/5', '51', '4/5', '36%'],
-            ['EURNZD', '4/6', '6/4', '4/6', '54', '4/6', '31%'],
-            ['GBPAUD', '8/3', '8/1', '7/3', '36', '8/2', '58%'],
-            ['GBPCHF', '8/5', '8/5', '7/5', '42', '8/5', '39%'],
-            ['GBPCAD', '8/2', '8/3', '7/2', '33', '8/3', '57%'],
-            ['GBPNZD', '8/6', '8/4', '7/6', '42', '8/6', '39%'],
-            ['AUDCAD', '3/2', '1/3', '3/2', '49', '2/3', '34%'],
-            ['AUDCHF', '3/5', '1/5', '3/5', '53', '2/5', '31%'],
-            ['AUDNZD', '3/6', '1/4', '3/6', '61', '2/6', '42%'],
-            ['CADCHF', '2/5', '3/5', '2/5', '55', '3/5', '36%'],
-            ['NZDCAD', '6/2', '4/3', '6/2', '43', '6/3', '42%'],
-            ['NZDCHF', '6/5', '4/5', '6/5', '49', '6/5', '34%']
-        ];
+// Generate summary section
+function generateSummary() {
+    const now = new Date();
+    const lastUpdatedTime = now.toLocaleTimeString('ja-JP', { hour: '2-digit', minute: '2-digit' });
+    
+    const summaryTitle = document.getElementById('summaryTitle');
+    const summaryPair = document.getElementById('summaryPair');
+    const summaryEntry = document.getElementById('summaryEntry');
+    const summaryTime = document.getElementById('summaryTime');
+    
+    // Find top confidence pair
+    const topPair = processedTableData.slice().sort((a, b) => b.confidence - a.confidence)[0];
 
-        // ページ読み込み時にサマリーを生成する
-        function generateSummary() {
-            const now = new Date();
-            const lastUpdatedTime = now.toLocaleTimeString('ja-JP', { hour: '2-digit', minute: '2-digit' });
+    if (topPair) {
+        const entrySignal = getEntrySignal(topPair.overallRanking);
+        
+        summaryTitle.textContent = `${lastUpdatedTime}のおすすめ通貨ペア`;
+        summaryPair.textContent = topPair.pair;
+        summaryEntry.textContent = entrySignal;
+        summaryEntry.classList.add('entry-signal');
+        summaryTime.textContent = `最終更新: ${lastUpdatedTime} | 信頼度: ${topPair.confidence}%`;
+    }
+}
+
+// Populate data table
+function populateTable() {
+    const tbody = document.getElementById('dataTable');
+    tbody.innerHTML = ''; // Clear existing data
+    
+    const top3Confidence = getTop3ConfidenceWithMedals();
+    const top3ConfidenceValues = Object.keys(top3Confidence).map(k => parseInt(k));
+    
+    // Sort by confidence descending
+    const sortedData = processedTableData.slice().sort((a, b) => b.confidence - a.confidence);
+    
+    sortedData.forEach(row => {
+        const tr = document.createElement('tr');
+        const entrySignal = getEntrySignal(row.overallRanking);
+        const isTop3 = top3ConfidenceValues.includes(row.confidence);
+        const medal = top3Confidence[row.confidence.toString()] || '';
+        
+        tr.innerHTML = `
+            <td class="pair-name">${row.pair}</td>
+            <td class="${isExtremeRanking(row.currencyStrength) ? 'highlight-extreme-ranking' : ''}">${row.currencyStrength}</td>
+            <td class="${isExtremeRanking(row.cciStrength) ? 'highlight-extreme-ranking' : ''}">${row.cciStrength}</td>
+            <td class="${isExtremeRanking(row.bbPercent) ? 'highlight-extreme-ranking' : ''}">${row.bbPercent}</td>
+            <td class="${isExtremeRSI(row.rsiBreakout) ? 'highlight-rsi-extreme' : ''}">${row.rsiBreakout}</td>
+            <td class="${isExtremeRanking(row.overallRanking) ? 'highlight-extreme-ranking' : ''}">${row.overallRanking}</td>
+            <td class="${isTop3 ? 'highlight-top3' : ''}">${medal}${row.confidence}%</td>
+            <td><span class="${isTop3 ? 'entry-top3' : 'entry-normal'}">${entrySignal}</span></td>
+        `;
+        tbody.appendChild(tr);
+    });
+}
+
+// Get entry signal based on ranking
+function getEntrySignal(ranking) {
+    const parts = ranking.split('/');
+    const leftNumber = parseInt(parts[0]);
+    const rightNumber = parseInt(parts[1]);
+    return leftNumber > rightNumber ? 'Buy' : 'Sell';
+}
+
+// Check if ranking is extreme (1/8 or 8/1)
+function isExtremeRanking(value) {
+    return value === '1/8' || value === '8/1';
+}
+
+// Check if RSI is extreme (>70 or <30)
+function isExtremeRSI(value) {
+    return value >= 70 || value <= 30;
+}
+
+// Get top 3 confidence values with medals
+function getTop3ConfidenceWithMedals() {
+    const confidenceValues = processedTableData
+        .map(item => item.confidence)
+        .filter(conf => conf >= 30) // Only show medals for confidence >= 30%
+        .sort((a, b) => b - a)
+        .slice(0, 3);
+    
+    const medals = ['🥇', '🥈', '🥉'];
+    const result = {};
+    
+    confidenceValues.forEach((confidence, index) => {
+        result[confidence.toString()] = medals[index] || '';
+    });
+    
+    return result;
+}
+
+// Refresh data function (can be called manually or on timer)
+function refreshData() {
+    console.log('Refreshing forex data...');
+    loadForexData();
+}
+
+// Auto-refresh every hour (3600000 ms)
+function startAutoRefresh() {
+    setInterval(refreshData, 3600000); // 1 hour
+    console.log('Auto-refresh started (every hour)');
+}
+
+// File watcher simulation (checks for file updates)
+async function checkForUpdates() {
+    try {
+        const response = await fetch('./fx_signals.json?' + new Date().getTime());
+        if (response.ok) {
+            const data = await response.json();
+            const newDataString = JSON.stringify(data);
+            const currentDataString = JSON.stringify({forexData});
             
-            const summaryTitle = document.getElementById('summaryTitle');
-            const summaryPair = document.getElementById('summaryPair');
-            const summaryEntry = document.getElementById('summaryEntry');
-            
-            // 勝率トップのデータを取得
-            const topPair = tableData.slice().sort((a, b) => {
-                const winRateA = parseInt(a[6]);
-                const winRateB = parseInt(b[6]);
-                return winRateB - winRateA;
-            })[0];
-
-            if (topPair) {
-                const pairName = topPair[0];
-                const entrySignal = getEntrySignal(topPair[1]);
-                
-                summaryTitle.textContent = `${lastUpdatedTime}のおすすめ通貨ペア`;
-                summaryPair.textContent = pairName;
-                summaryEntry.textContent = entrySignal;
-                summaryEntry.classList.add('entry-signal');
+            if (newDataString !== currentDataString) {
+                console.log('JSON file updated, refreshing data...');
+                loadForexData();
             }
         }
+    } catch (error) {
+        console.log('Update check failed:', error.message);
+    }
+}
 
-        // データテーブルの生成
-        function populateTable() {
-            const tbody = document.getElementById('dataTable');
-            const top3Rates = getTop3WinRatesWithMedals();
-            const top3WinRates = Object.keys(top3Rates);
-            
-            tableData.forEach(row => {
-                const tr = document.createElement('tr');
-                const entrySignal = getEntrySignal(row[1]);
-                const winRate = row[6];
-                const isTop3 = top3WinRates.includes(winRate);
-                const medal = top3Rates[winRate] || '';
-                
-                tr.innerHTML = `
-                    <td class="pair-name">${row[0]}</td>
-                    <td class="${isExtremeRanking(row[1]) ? 'highlight-extreme-ranking' : ''}">${row[1]}</td>
-                    <td class="${isExtremeRanking(row[2]) ? 'highlight-extreme-ranking' : ''}">${row[2]}</td>
-                    <td class="${isExtremeRanking(row[3]) ? 'highlight-extreme-ranking' : ''}">${row[3]}</td>
-                    <td class="${isExtremeRSI(row[4]) ? 'highlight-rsi-extreme' : ''}">${row[4]}</td>
-                    <td class="${isExtremeRanking(row[5]) ? 'highlight-extreme-ranking' : ''}">${row[5]}</td>
-                    <td class="${isTop3 ? 'highlight-top3' : ''}">${medal}${row[6]}</td>
-                    <td><span class="${isTop3 ? 'entry-top3' : 'entry-normal'}">${entrySignal}</span></td>
-                `;
-                tbody.appendChild(tr);
-            });
+// Start periodic update checks (every 5 minutes)
+function startUpdateChecker() {
+    setInterval(checkForUpdates, 300000); // 5 minutes
+    console.log('Update checker started (every 5 minutes)');
+}
+
+// Manual refresh button
+function addRefreshButton() {
+    const summaryBox = document.querySelector('.summary-box');
+    const refreshBtn = document.createElement('button');
+    refreshBtn.textContent = 'データを更新';
+    refreshBtn.style.cssText = `
+        margin-top: 16px;
+        padding: 8px 16px;
+        background: #007AFF;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        transition: background 0.3s ease;
+    `;
+    refreshBtn.onmouseover = () => refreshBtn.style.background = '#0056CC';
+    refreshBtn.onmouseout = () => refreshBtn.style.background = '#007AFF';
+    refreshBtn.onclick = refreshData;
+    summaryBox.appendChild(refreshBtn);
+}
+
+// Validate JSON file structure
+function validateForexData(data) {
+    if (!data || !data.forexData) {
+        throw new Error('Invalid JSON structure: missing forexData property');
+    }
+    
+    const requiredFields = [
+        'Currency_Strength_Rank_all_pair',
+        'CCI_Currency_Strength_Rank_all_pair', 
+        'BB_percent_ranking',
+        'RSI_breakout',
+        'Overall_Ranking',
+        'Confidence'
+    ];
+    
+    for (const [pair, pairData] of Object.entries(data.forexData)) {
+        for (const field of requiredFields) {
+            if (!(field in pairData)) {
+                throw new Error(`Missing field '${field}' in ${pair} data`);
+            }
         }
+    }
+    
+    return true;
+}
 
-        function getEntrySignal(rsiRanking) {
-            const leftNumber = parseInt(rsiRanking.split('/')[0]);
-            const rightNumber = parseInt(rsiRanking.split('/')[1]);
-            return leftNumber > rightNumber ? 'Buy' : 'Sell';
-        }
+// Initialize everything when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('Initializing Forex Data Manager...');
+    console.log('Looking for fx_signals.json in root directory');
+    
+    loadForexData();
+    startAutoRefresh();
+    startUpdateChecker();
+    
+    // Uncomment the next line if you want a manual refresh button
+    // addRefreshButton();
+});
 
-        function isExtremeRanking(value) {
-            return value === '1/8' || value === '8/1';
-        }
-
-        function isExtremeRSI(value) {
-            const num = parseInt(value);
-            return num >= 70 || num <= 30;
-        }
-
-        function getTop3WinRatesWithMedals() {
-            const rates = tableData
-                .map((row, index) => ({ index, rate: parseInt(row[6]), percentage: row[6], pair: row[0] }))
-                .filter(item => item.rate >= 50)
-                .sort((a, b) => b.rate - a.rate)
-                .slice(0, 3);
-            
-            const medals = ['🥇', '🥈', '🥉'];
-            const result = {};
-            
-            rates.forEach((item, index) => {
-                result[item.percentage] = medals[index] || '';
-            });
-            
-            return result;
-        }
-
-        // 初期化
-        document.addEventListener('DOMContentLoaded', () => {
-            populateTable();
-            generateSummary();
-        });
+// Export functions for external use
+window.ForexDataManager = {
+    refresh: refreshData,
+    getData: () => processedTableData,
+    getRawData: () => forexData,
+    loadFromFile: loadForexData,
+    addRefreshButton: addRefreshButton,
+    validate: validateForexData
+};
     </script>
-</body>
-</html>
+</body> 

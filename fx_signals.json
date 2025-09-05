@@ -4,7 +4,7 @@
       "Currency_Strength_Rank_all_pair": "7/4",
       "CCI_Currency_Strength_Rank_all_pair": "7/2",
       "BB_percent_ranking": "7/2",
-      "RSI_breakout": 42,
+      "RSI_breakout": 43,
       "Overall_Ranking": "7/2",
       "Confidence": 42
     },
@@ -20,7 +20,7 @@
       "Currency_Strength_Rank_all_pair": "3/4",
       "CCI_Currency_Strength_Rank_all_pair": "5/2",
       "BB_percent_ranking": "3/2",
-      "RSI_breakout": 50,
+      "RSI_breakout": 49,
       "Overall_Ranking": "4/2",
       "Confidence": 14
     },
@@ -44,7 +44,7 @@
       "Currency_Strength_Rank_all_pair": "8/4",
       "CCI_Currency_Strength_Rank_all_pair": "8/2",
       "BB_percent_ranking": "8/2",
-      "RSI_breakout": 32,
+      "RSI_breakout": 33,
       "Overall_Ranking": "8/2",
       "Confidence": 61
     },
@@ -68,7 +68,7 @@
       "Currency_Strength_Rank_all_pair": "5/7",
       "CCI_Currency_Strength_Rank_all_pair": "6/7",
       "BB_percent_ranking": "6/7",
-      "RSI_breakout": 57,
+      "RSI_breakout": 56,
       "Overall_Ranking": "6/7",
       "Confidence": 19
     },
@@ -76,7 +76,7 @@
       "Currency_Strength_Rank_all_pair": "3/7",
       "CCI_Currency_Strength_Rank_all_pair": "5/7",
       "BB_percent_ranking": "3/7",
-      "RSI_breakout": 59,
+      "RSI_breakout": 58,
       "Overall_Ranking": "4/7",
       "Confidence": 33
     },
@@ -116,17 +116,17 @@
       "Currency_Strength_Rank_all_pair": "2/5",
       "CCI_Currency_Strength_Rank_all_pair": "3/6",
       "BB_percent_ranking": "4/6",
-      "RSI_breakout": 55,
+      "RSI_breakout": 54,
       "Overall_Ranking": "3/6",
-      "Confidence": 32
+      "Confidence": 27
     },
     "EURCAD": {
       "Currency_Strength_Rank_all_pair": "2/8",
       "CCI_Currency_Strength_Rank_all_pair": "3/8",
       "BB_percent_ranking": "4/8",
-      "RSI_breakout": 75,
+      "RSI_breakout": 74,
       "Overall_Ranking": "3/8",
-      "Confidence": 76
+      "Confidence": 71
     },
     "EURCHF": {
       "Currency_Strength_Rank_all_pair": "2/1",
@@ -164,7 +164,7 @@
       "Currency_Strength_Rank_all_pair": "3/8",
       "CCI_Currency_Strength_Rank_all_pair": "5/8",
       "BB_percent_ranking": "3/8",
-      "RSI_breakout": 71,
+      "RSI_breakout": 70,
       "Overall_Ranking": "4/8",
       "Confidence": 63
     },
@@ -196,7 +196,7 @@
       "Currency_Strength_Rank_all_pair": "5/6",
       "CCI_Currency_Strength_Rank_all_pair": "6/4",
       "BB_percent_ranking": "6/5",
-      "RSI_breakout": 50,
+      "RSI_breakout": 51,
       "Overall_Ranking": "6/5",
       "Confidence": 14
     },

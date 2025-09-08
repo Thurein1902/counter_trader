@@ -918,6 +918,33 @@ function startAutoRefresh() {
     console.log('Auto-refresh started (every hour)');
 }
 
+function startAutoRefreshAt05(runNow = false) {
+  if (runNow) refreshData();
+
+  function scheduleNext() {
+    const now = new Date();
+    const next = new Date(now);
+
+    // Set to next :05 mark
+    next.setHours(now.getMinutes() < 5 ? now.getHours() : now.getHours() + 1);
+    next.setMinutes(5, 0, 0);
+
+    const delay = next - now;
+
+    refreshTimer = setTimeout(() => {
+      refreshData();
+      scheduleNext(); // Keep scheduling
+    }, delay);
+  }
+
+  scheduleNext();
+  console.log('Auto-refresh scheduled at every HH:05 (browser time)');
+}
+
+function stopAutoRefresh() {
+  clearTimeout(refreshTimer);
+}
+
 // File watcher simulation (checks for file updates)
 async function checkForUpdates() {
     try {
@@ -998,7 +1025,7 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('Looking for fx_signals.json in root directory');
     
     loadForexData();
-    startAutoRefresh();
+    startAutoRefreshAt05();
     startUpdateChecker();
     
     // Uncomment the next line if you want a manual refresh button

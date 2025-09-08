@@ -84,8 +84,8 @@ def run_git_commands():
     try:
         os.chdir(GIT_REPO_PATH)
         
-        #subprocess.run(["git", "add", "fx_signals.json"], check=True)
-        subprocess.run(["git", "add", "."], check=True)
+        subprocess.run(["git", "add", "fx_signals.json"], check=True)
+        #subprocess.run(["git", "add", "."], check=True)
         subprocess.run(["git", "commit", "-m", "Update fx_signals.json"], check=True)
         subprocess.run(["git", "push", "-u", "origin", "main"], check=True)
 
@@ -104,7 +104,7 @@ def move_file():
 last_hour = None
 while True:
     now = datetime.now()
-    if now.minute == 15 and now.hour != last_hour:
+    if now.minute == 4 and now.hour != last_hour:
         move_file()
         last_hour = now.hour
         time.sleep(60)

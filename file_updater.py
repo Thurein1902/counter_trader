@@ -104,7 +104,7 @@ def move_file():
 last_hour = None
 while True:
     now = datetime.now()
-    if now.minute == 14 and now.hour != last_hour:
+    if now.minute == 15 and now.hour != last_hour:
         move_file()
         last_hour = now.hour
         time.sleep(60)

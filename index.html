@@ -926,8 +926,8 @@ function startAutoRefreshAt05(runNow = false) {
     const next = new Date(now);
 
     // Set to next :05 mark
-    next.setHours(now.getMinutes() < 5 ? now.getHours() : now.getHours() + 1);
-    next.setMinutes(5, 0, 0);
+    next.setHours(now.getMinutes() < 6 ? now.getHours() : now.getHours() + 1);
+    next.setMinutes(6, 0, 0);
 
     const delay = next - now;
 

@@ -1,64 +1,64 @@
 {
   "forexData": {
     "USDJPY": {
-      "Currency_Strength_Rank_all_pair": "6/4",
+      "Currency_Strength_Rank_all_pair": "6/3",
       "CCI_Currency_Strength_Rank_all_pair": "2/3",
       "BB_percent_ranking": "4/3",
       "RSI_breakout": 47,
       "Overall_Ranking": "4/3",
-      "Confidence": 14,
+      "Confidence": 18,
       "Signal": "Stay"
     },
     "EURJPY": {
-      "Currency_Strength_Rank_all_pair": "7/4",
+      "Currency_Strength_Rank_all_pair": "7/3",
       "CCI_Currency_Strength_Rank_all_pair": "7/3",
       "BB_percent_ranking": "8/3",
       "RSI_breakout": 42,
       "Overall_Ranking": "8/3",
-      "Confidence": 36,
+      "Confidence": 40,
       "Signal": "Stay"
     },
     "GBPJPY": {
-      "Currency_Strength_Rank_all_pair": "3/4",
+      "Currency_Strength_Rank_all_pair": "4/3",
       "CCI_Currency_Strength_Rank_all_pair": "5/3",
       "BB_percent_ranking": "5/3",
-      "RSI_breakout": 50,
+      "RSI_breakout": 49,
       "Overall_Ranking": "5/3",
-      "Confidence": 17,
+      "Confidence": 20,
       "Signal": "Stay"
     },
     "AUDJPY": {
-      "Currency_Strength_Rank_all_pair": "1/4",
+      "Currency_Strength_Rank_all_pair": "1/3",
       "CCI_Currency_Strength_Rank_all_pair": "1/3",
       "BB_percent_ranking": "1/3",
-      "RSI_breakout": 57,
+      "RSI_breakout": 56,
       "Overall_Ranking": "1/3",
       "Confidence": 19,
       "Signal": "Stay"
     },
     "NZDJPY": {
-      "Currency_Strength_Rank_all_pair": "2/4",
+      "Currency_Strength_Rank_all_pair": "2/3",
       "CCI_Currency_Strength_Rank_all_pair": "4/3",
       "BB_percent_ranking": "2/3",
-      "RSI_breakout": 56,
+      "RSI_breakout": 54,
       "Overall_Ranking": "2/3",
-      "Confidence": 16,
+      "Confidence": 11,
       "Signal": "Stay"
     },
     "CADJPY": {
-      "Currency_Strength_Rank_all_pair": "8/4",
+      "Currency_Strength_Rank_all_pair": "8/3",
       "CCI_Currency_Strength_Rank_all_pair": "6/3",
       "BB_percent_ranking": "7/3",
       "RSI_breakout": 39,
       "Overall_Ranking": "7/3",
-      "Confidence": 41,
+      "Confidence": 45,
       "Signal": "Stay"
     },
     "CHFJPY": {
-      "Currency_Strength_Rank_all_pair": "5/4",
+      "Currency_Strength_Rank_all_pair": "5/3",
       "CCI_Currency_Strength_Rank_all_pair": "8/3",
       "BB_percent_ranking": "6/3",
-      "RSI_breakout": 48,
+      "RSI_breakout": 47,
       "Overall_Ranking": "6/3",
       "Confidence": 31,
       "Signal": "Stay"
@@ -67,7 +67,7 @@
       "Currency_Strength_Rank_all_pair": "7/6",
       "CCI_Currency_Strength_Rank_all_pair": "7/2",
       "BB_percent_ranking": "8/4",
-      "RSI_breakout": 46,
+      "RSI_breakout": 47,
       "Overall_Ranking": "8/4",
       "Confidence": 27,
       "Signal": "Stay"
@@ -82,10 +82,10 @@
       "Signal": "Stay"
     },
     "GBPUSD": {
-      "Currency_Strength_Rank_all_pair": "3/6",
+      "Currency_Strength_Rank_all_pair": "4/6",
       "CCI_Currency_Strength_Rank_all_pair": "5/2",
       "BB_percent_ranking": "5/4",
-      "RSI_breakout": 54,
+      "RSI_breakout": 53,
       "Overall_Ranking": "5/4",
       "Confidence": 17,
       "Signal": "Stay"
@@ -94,7 +94,7 @@
       "Currency_Strength_Rank_all_pair": "2/6",
       "CCI_Currency_Strength_Rank_all_pair": "4/2",
       "BB_percent_ranking": "2/4",
-      "RSI_breakout": 58,
+      "RSI_breakout": 57,
       "Overall_Ranking": "2/4",
       "Confidence": 23,
       "Signal": "Stay"
@@ -118,12 +118,12 @@
       "Signal": "Stay"
     },
     "EURGBP": {
-      "Currency_Strength_Rank_all_pair": "7/3",
+      "Currency_Strength_Rank_all_pair": "7/4",
       "CCI_Currency_Strength_Rank_all_pair": "7/5",
       "BB_percent_ranking": "8/5",
-      "RSI_breakout": 39,
+      "RSI_breakout": 41,
       "Overall_Ranking": "8/5",
-      "Confidence": 31,
+      "Confidence": 22,
       "Signal": "Stay"
     },
     "EURAUD": {
@@ -157,22 +157,22 @@
       "Currency_Strength_Rank_all_pair": "7/2",
       "CCI_Currency_Strength_Rank_all_pair": "7/4",
       "BB_percent_ranking": "8/2",
-      "RSI_breakout": 34,
+      "RSI_breakout": 36,
       "Overall_Ranking": "8/2",
-      "Confidence": 59,
+      "Confidence": 49,
       "Signal": "Stay"
     },
     "GBPAUD": {
-      "Currency_Strength_Rank_all_pair": "3/1",
+      "Currency_Strength_Rank_all_pair": "4/1",
       "CCI_Currency_Strength_Rank_all_pair": "5/1",
       "BB_percent_ranking": "5/1",
-      "RSI_breakout": 41,
+      "RSI_breakout": 39,
       "Overall_Ranking": "5/1",
-      "Confidence": 25,
+      "Confidence": 30,
       "Signal": "Stay"
     },
     "GBPCHF": {
-      "Currency_Strength_Rank_all_pair": "3/5",
+      "Currency_Strength_Rank_all_pair": "4/5",
       "CCI_Currency_Strength_Rank_all_pair": "5/8",
       "BB_percent_ranking": "5/6",
       "RSI_breakout": 52,
@@ -181,19 +181,19 @@
       "Signal": "Stay"
     },
     "GBPCAD": {
-      "Currency_Strength_Rank_all_pair": "3/8",
+      "Currency_Strength_Rank_all_pair": "4/8",
       "CCI_Currency_Strength_Rank_all_pair": "5/6",
       "BB_percent_ranking": "5/7",
-      "RSI_breakout": 66,
+      "RSI_breakout": 65,
       "Overall_Ranking": "5/7",
-      "Confidence": 41,
+      "Confidence": 37,
       "Signal": "Sell"
     },
     "GBPNZD": {
-      "Currency_Strength_Rank_all_pair": "3/2",
+      "Currency_Strength_Rank_all_pair": "4/2",
       "CCI_Currency_Strength_Rank_all_pair": "5/4",
       "BB_percent_ranking": "5/2",
-      "RSI_breakout": 41,
+      "RSI_breakout": 42,
       "Overall_Ranking": "5/2",
       "Confidence": 25,
       "Signal": "Stay"
@@ -220,7 +220,7 @@
       "Currency_Strength_Rank_all_pair": "1/2",
       "CCI_Currency_Strength_Rank_all_pair": "1/4",
       "BB_percent_ranking": "1/2",
-      "RSI_breakout": 51,
+      "RSI_breakout": 53,
       "Overall_Ranking": "1/2",
       "Confidence": 14,
       "Signal": "Stay"
@@ -238,7 +238,7 @@
       "Currency_Strength_Rank_all_pair": "2/8",
       "CCI_Currency_Strength_Rank_all_pair": "4/6",
       "BB_percent_ranking": "2/7",
-      "RSI_breakout": 68,
+      "RSI_breakout": 67,
       "Overall_Ranking": "2/7",
       "Confidence": 59,
       "Signal": "Sell"
@@ -247,7 +247,7 @@
       "Currency_Strength_Rank_all_pair": "2/5",
       "CCI_Currency_Strength_Rank_all_pair": "4/8",
       "BB_percent_ranking": "2/6",
-      "RSI_breakout": 57,
+      "RSI_breakout": 56,
       "Overall_Ranking": "2/6",
       "Confidence": 32,
       "Signal": "Stay"

@@ -1303,7 +1303,7 @@
                     <td class="${isExtremeRanking(row.cciStrength) ? 'highlight-extreme-ranking' : ''}">${row.cciStrength}</td>
                     <td class="${isExtremeRanking(row.bbPercent) ? 'highlight-extreme-ranking' : ''}">${row.bbPercent}</td>
                     <td class="${isExtremeRanking(row.overallRanking) ? 'highlight-extreme-ranking' : ''}">${row.overallRanking}</td>
-                    <td class="${highlightClass}">${medal}${row.confidence}%</td>
+                    <td class="${isTop3 ? 'highlight-top3' : ''}">${medal}${row.confidence}%</td>
                     <td><span class="${entryClass}">${entrySignal}</span></td>
                 `;
                 tbody.appendChild(tr);

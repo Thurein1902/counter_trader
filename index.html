@@ -1266,7 +1266,7 @@
             }
         }
 
-        // Populate data table
+        // Modified populateTable function - replace the existing one
         function populateTable() {
             const tbody = document.getElementById('dataTable');
             tbody.innerHTML = ''; // Clear existing data
@@ -1281,7 +1281,10 @@
                 const tr = document.createElement('tr');
                 const entrySignal = getDirectionFromSignal(row.signal);
                 const isTop3 = top3ConfidenceValues.includes(row.confidence);
-                const medal = top3Confidence[row.confidence.toString()] || '';
+                
+                // Only show medal if signal is NOT "中立傾向" (Stay/Hold)
+                const shouldShowMedal = entrySignal !== '中立傾向';
+                const medal = (isTop3 && shouldShowMedal) ? (top3Confidence[row.confidence.toString()] || '') : '';
                 
                 // Determine entry class based on signal type
                 let entryClass = 'entry-normal';

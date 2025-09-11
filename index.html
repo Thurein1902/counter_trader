@@ -8,12 +8,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
-        /*
-        * CSS Zen Gardens
-        * フォント、文字サイズ、色、行間、字詰めなど、文字に関するプロパティだけを変更して、
-        * 元のデザインから都会的で洗練された印象に変更。
-        * AppleやGoogleのようなミニマルでクリーンなUIを目指しました。
-        */
         body {
             font-family: 'Inter', 'Noto Sans JP', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
             color: #1a1a1a;
@@ -26,9 +20,6 @@
             background: #fcfcfd;
         }
 
-        /*
-        * ナビゲーション
-        */
         .nav {
             position: fixed;
             top: 0;
@@ -49,7 +40,6 @@
             padding: 0 24px;
         }
         
-        /* ロゴ */
         .logo {
             font-size: 1.8rem;
             font-weight: 700;
@@ -62,7 +52,6 @@
             cursor: pointer;
         }
         
-        /* ナビゲーションリンク */
         .nav-links {
             display: flex;
             gap: 40px;
@@ -82,9 +71,6 @@
             color: #007AFF;
         }
 
-        /*
-        * ヒーローセクション
-        */
         .hero {
             padding: 180px 24px 120px;
             text-align: center;
@@ -110,7 +96,6 @@
             margin: 0 auto 48px;
         }
         
-        /* セクション共通 */
         .section {
             padding: 120px 24px;
             max-width: 1200px;
@@ -118,7 +103,6 @@
             background: #fff;
         }
         
-        /* セクションタイトル */
         .section-title {
             font-size: 2.5rem;
             font-weight: 700;
@@ -129,7 +113,6 @@
             margin-bottom: 12px;
         }
         
-        /* サマリー部分 */
         .summary-box {
             background: #fcfcfd;
             border: 1px solid rgba(0, 0, 0, 0.05);
@@ -213,9 +196,38 @@
             margin-right: auto;
         }
 
-        /*
-        * カードとテーブル
-        */
+        .pair-toggle-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 40px;
+            margin-bottom: 40px;
+        }
+
+        .pair-toggle-btn {
+            background: #fff;
+            color: #6e6e6e;
+            font-size: 1.2rem;
+            font-weight: 500;
+            padding: 12px 24px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .pair-toggle-btn:hover {
+            color: #007AFF;
+            border-color: #007AFF;
+        }
+
+        .pair-toggle-btn.active {
+            background: linear-gradient(90deg, #007AFF, #34C759);
+            color: #fff;
+            border-color: transparent;
+            box-shadow: 0 4px 10px rgba(0, 122, 255, 0.2);
+        }
+
         .card {
             background: #fcfcfd;
             border: 1px solid rgba(0, 0, 0, 0.05);
@@ -269,11 +281,6 @@
             letter-spacing: 0.01em;
             cursor: pointer;
         }
-        
-        .data-table td img {
-            display: block; /* 画像をブロック要素にして中央揃えしやすくする */
-            margin: 0 auto; /* 画像を中央揃え */
-        }
 
         .data-table tr:last-child td {
             border-bottom: none;
@@ -305,16 +312,6 @@
             font-weight: 700 !important;
             font-size: 1.1rem !important;
             color: #007AFF !important;
-        }
-
-        .entry-top3 {
-            background: rgba(52, 199, 89, 0.1);
-            color: #34C759;
-            font-weight: 600;
-            padding: 8px 16px;
-            border-radius: 12px;
-            font-size: 0.95rem;
-            letter-spacing: 0.02em;
         }
 
         .entry-normal {
@@ -355,49 +352,6 @@
             letter-spacing: 0.02em;
         }
 
-        /* モーダルウィンドウのスタイル */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1002;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0,0,0,0.9);
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal-content {
-            margin: auto;
-            display: block;
-            width: 90%;
-            max-width: 900px;
-        }
-
-        .close {
-            position: absolute;
-            top: 20px;
-            right: 35px;
-            color: #f1f1f1;
-            font-size: 40px;
-            font-weight: bold;
-            transition: 0.3s;
-            cursor: pointer;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: #bbb;
-            text-decoration: none;
-            cursor: pointer;
-        }
-        
-        /*
-        * Features セクション
-        */
         .features {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -438,9 +392,6 @@
             margin: 0;
         }
 
-        /*
-        * フッター
-        */
         .footer {
             background: #fafafc;
             padding: 60px 24px;
@@ -474,9 +425,6 @@
             text-decoration: underline;
         }
 
-        /*
-        * ページ切り替え
-        */
         .page {
             display: none;
             min-height: 80vh;
@@ -510,9 +458,6 @@
             font-weight: 300;
         }
 
-        /*
-        * レスポンシブデザイン
-        */
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: 3.2rem;
@@ -553,9 +498,20 @@
             .section-title {
                 font-size: 2rem;
             }
+
+            .pair-toggle-container {
+                flex-direction: column;
+                align-items: center;
+                gap: 8px;
+            }
+
+            .pair-toggle-btn {
+                width: 100%;
+                max-width: 300px;
+                border-radius: 12px !important;
+            }
         }
 
-        /* スクロールインジケーター */
         .scroll-indicator {
             position: fixed;
             top: 0;
@@ -568,7 +524,6 @@
             z-index: 1001;
         }
 
-        /* Loading and Error indicators */
         .loading {
             text-align: center;
             padding: 20px;
@@ -619,6 +574,11 @@
             </div>
             
             <p class="section-subtitle">このツールは、4時間足のRSI、CCI、BB%Bを分析し、通貨強弱を組み合わせた総合的なランキングを算出します。さらにRSIを加味して「期待度」を示しています。強弱の順位は「1」が最強通貨、「8」が最弱通貨です。例えば「USDJPYが1/8」の場合はUSDが最強・JPYが最弱となり、この分析結果では「下方向傾向（学習上の仮説例）」となります。「中立傾向」と表示される場合は方向性がないことを示します。これらのデータはあくまで学習・検証のための分析結果であり、投資の推薦や助言ではありません。ご自身の判断でご利用ください。</p>
+            
+            <div class="pair-toggle-container">
+                <button class="pair-toggle-btn" id="btn-10pair" onclick="switchPairView('10pair')">10通貨ペア分析結果</button>
+                <button class="pair-toggle-btn active" id="btn-28pair" onclick="switchPairView('28pair')">28通貨ペア分析結果</button>
+            </div>
             
             <div class="card">
                 <div id="loadingIndicator" class="loading">データを読み込んでいます...</div>
@@ -1085,358 +1045,363 @@
     </footer>
 
     <script>
-        // Global variables for forex data
-        let forexData = null;
-        let processedTableData = [];
-        let refreshTimer;
+    // Global variables for forex data
+    let forexData = null;
+    let processedTableData = [];
+    let refreshTimer;
+    let currentDataSource = '28pair'; // Track current data source
 
-        // Page switching functionality
-        function showPage(pageId) {
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.remove('active');
-            });
-            document.getElementById(pageId).classList.add('active');
-            window.scrollTo(0, 0);
-        }
-
-        // Scroll indicator
-        window.addEventListener('scroll', () => {
-            const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-            document.querySelector('.scroll-indicator').style.transform = `scaleX(${scrolled / 100})`;
+    // Page switching functionality
+    function showPage(pageId) {
+        document.querySelectorAll('.page').forEach(page => {
+            page.classList.remove('active');
         });
+        document.getElementById(pageId).classList.add('active');
+        window.scrollTo(0, 0);
+    }
 
-        // Load JSON data function
-        async function loadForexData() {
-            try {
-                showLoading(true);
-                
-                // Load data from fx_signals.json in root directory
-                const response = await fetch('./fx_signals.json?' + new Date().getTime());
-                
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                
-                const data = await response.json();
-                forexData = data.forexData;
-                
-                // Process and display the data
-                processedTableData = processForexData(forexData);
-                populateTable();
-                generateSummary();
-                showLoading(false);
-                
-                console.log('Forex data loaded successfully from fx_signals.json');
-                
-            } catch (error) {
-                console.error('Error loading forex data:', error);
-                
-                // Fallback to static data if JSON loading fails
-                console.log('Loading fallback static data...');
-                loadFallbackData();
+    // Switch between 10 and 28 pair views
+    function switchPairView(pairType) {
+        // Update button states
+        document.querySelectorAll('.pair-toggle-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        document.getElementById(`btn-${pairType}`).classList.add('active');
+        
+        // Update current data source
+        currentDataSource = pairType;
+        
+        // Load appropriate data
+        loadForexData();
+    }
+
+    // Scroll indicator
+    window.addEventListener('scroll', () => {
+        const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+        document.querySelector('.scroll-indicator').style.transform = `scaleX(${scrolled / 100})`;
+    });
+
+    // Load JSON data function
+    async function loadForexData() {
+        try {
+            showLoading(true);
+            
+            // Determine which JSON file to load based on current view
+            const fileName = `fx_signals_${currentDataSource}.json`;
+            const response = await fetch(`./${fileName}?` + new Date().getTime());
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
             }
-        }
-
-        // Fallback to static data (from original file)
-        function loadFallbackData() {
-            const fallbackData = [
-                ['USDJPY', '1/7', '2/7', '1/8', '75', '1/7', '55%', 'Buy'],
-                ['EURJPY', '4/7', '6/7', '4/8', '63', '4/7', '48%', 'Sell'],
-                ['GBPJPY', '8/7', '8/7', '7/8', '49', '8/7', '34%', 'Buy'],
-                ['AUDJPY', '3/7', '1/7', '3/8', '65', '2/7', '48%', 'Sell'],
-                ['NZDJPY', '6/7', '4/7', '6/8', '59', '6/7', '46%', 'Buy'],
-                ['CADJPY', '2/7', '3/7', '2/8', '66', '3/7', '72%', 'Sell'],
-                ['CHFJPY', '5/7', '5/7', '5/8', '60', '5/7', '39%', 'Buy'],
-                ['EURUSD', '4/1', '6/2', '4/1', '20', '4/1', '39%', 'Sell'],
-                ['AUDUSD', '3/1', '1/2', '3/1', '47', '2/1', '54%', 'Buy'],
-                ['GBPUSD', '8/1', '8/2', '7/1', '35', '8/1', '67%', 'Sell'],
-                ['NZDUSD', '6/1', '4/2', '6/1', '43', '6/1', '47%', 'Buy'],
-                ['USDCHF', '1/5', '2/5', '1/5', '58', '1/5', '36%', 'Sell'],
-                ['USDCAD', '1/2', '2/3', '1/2', '56', '1/3', '36%', 'Buy'],
-                ['EURGBP', '4/8', '6/8', '4/7', '65', '4/8', '39%', 'Sell'],
-                ['EURAUD', '4/3', '6/1', '4/3', '47', '4/2', '34%', 'Buy'],
-                ['EURCAD', '4/2', '6/3', '4/2', '44', '4/3', '39%', 'Sell'],
-                ['EURCHF', '4/5', '6/5', '4/5', '51', '4/5', '36%', 'Buy'],
-                ['EURNZD', '4/6', '6/4', '4/6', '54', '4/6', '31%', 'Sell'],
-                ['GBPAUD', '8/3', '8/1', '7/3', '36', '8/2', '58%', 'Buy'],
-                ['GBPCHF', '8/5', '8/5', '7/5', '42', '8/5', '39%', 'Sell'],
-                ['GBPCAD', '8/2', '8/3', '7/2', '33', '8/3', '57%', 'Buy'],
-                ['GBPNZD', '8/6', '8/4', '7/6', '42', '8/6', '39%', 'Sell'],
-                ['AUDCAD', '3/2', '1/3', '3/2', '49', '2/3', '34%', 'Buy'],
-                ['AUDCHF', '3/5', '1/5', '3/5', '53', '2/5', '31%', 'Sell'],
-                ['AUDNZD', '3/6', '1/4', '3/6', '61', '2/6', '42%', 'Buy'],
-                ['CADCHF', '2/5', '3/5', '2/5', '55', '3/5', '36%', 'Sell'],
-                ['NZDCAD', '6/2', '4/3', '6/2', '43', '6/3', '42%', 'Buy'],
-                ['NZDCHF', '6/5', '4/5', '6/5', '49', '6/5', '34%', 'Sell']
-            ];
-
-            // Convert static data to processed format
-            processedTableData = fallbackData.map(row => ({
-                pair: row[0],
-                currencyStrength: row[1],
-                cciStrength: row[2],
-                bbPercent: row[3],
-                rsiBreakout: parseInt(row[4]),
-                overallRanking: row[5],
-                confidence: parseInt(row[6].replace('%', '')),
-                signal: row[7] || getEntrySignalFromRanking(row[5])
-            }));
-
+            
+            const data = await response.json();
+            forexData = data.forexData;
+            
+            // Process and display the data
+            processedTableData = processForexData(forexData);
             populateTable();
             generateSummary();
             showLoading(false);
-            console.log('Fallback static data loaded successfully');
+            
+            console.log(`Forex data loaded successfully from ${fileName}`);
+            
+        } catch (error) {
+            console.error('Error loading forex data:', error);
+            
+            // Fallback to static data if JSON loading fails
+            console.log('Loading fallback static data...');
+            loadFallbackData();
+        }
+    }
+
+    // Fallback to static data
+    function loadFallbackData() {
+        // Define 10 major pairs
+        const majorPairs = ['USDJPY', 'EURUSD', 'GBPUSD', 'AUDUSD', 'EURJPY', 'GBPJPY', 'AUDJPY', 'EURGBP', 'EURAUD', 'GBPAUD'];
+        
+        const allFallbackData = [
+            ['USDJPY', '1/7', '2/7', '1/8', '75', '1/7', '55%', 'Buy'],
+            ['EURJPY', '4/7', '6/7', '4/8', '63', '4/7', '48%', 'Sell'],
+            ['GBPJPY', '8/7', '8/7', '7/8', '49', '8/7', '34%', 'Buy'],
+            ['AUDJPY', '3/7', '1/7', '3/8', '65', '2/7', '48%', 'Sell'],
+            ['NZDJPY', '6/7', '4/7', '6/8', '59', '6/7', '46%', 'Buy'],
+            ['CADJPY', '2/7', '3/7', '2/8', '66', '3/7', '72%', 'Sell'],
+            ['CHFJPY', '5/7', '5/7', '5/8', '60', '5/7', '39%', 'Buy'],
+            ['EURUSD', '4/1', '6/2', '4/1', '20', '4/1', '39%', 'Sell'],
+            ['AUDUSD', '3/1', '1/2', '3/1', '47', '2/1', '54%', 'Buy'],
+            ['GBPUSD', '8/1', '8/2', '7/1', '35', '8/1', '67%', 'Sell'],
+            ['NZDUSD', '6/1', '4/2', '6/1', '43', '6/1', '47%', 'Buy'],
+            ['USDCHF', '1/5', '2/5', '1/5', '58', '1/5', '36%', 'Sell'],
+            ['USDCAD', '1/2', '2/3', '1/2', '56', '1/3', '36%', 'Buy'],
+            ['EURGBP', '4/8', '6/8', '4/7', '65', '4/8', '39%', 'Sell'],
+            ['EURAUD', '4/3', '6/1', '4/3', '47', '4/2', '34%', 'Buy'],
+            ['EURCAD', '4/2', '6/3', '4/2', '44', '4/3', '39%', 'Sell'],
+            ['EURCHF', '4/5', '6/5', '4/5', '51', '4/5', '36%', 'Buy'],
+            ['EURNZD', '4/6', '6/4', '4/6', '54', '4/6', '31%', 'Sell'],
+            ['GBPAUD', '8/3', '8/1', '7/3', '36', '8/2', '58%', 'Buy'],
+            ['GBPCHF', '8/5', '8/5', '7/5', '42', '8/5', '39%', 'Sell'],
+            ['GBPCAD', '8/2', '8/3', '7/2', '33', '8/3', '57%', 'Buy'],
+            ['GBPNZD', '8/6', '8/4', '7/6', '42', '8/6', '39%', 'Sell'],
+            ['AUDCAD', '3/2', '1/3', '3/2', '49', '2/3', '34%', 'Buy'],
+            ['AUDCHF', '3/5', '1/5', '3/5', '53', '2/5', '31%', 'Sell'],
+            ['AUDNZD', '3/6', '1/4', '3/6', '61', '2/6', '42%', 'Buy'],
+            ['CADCHF', '2/5', '3/5', '2/5', '55', '3/5', '36%', 'Sell'],
+            ['NZDCAD', '6/2', '4/3', '6/2', '43', '6/3', '42%', 'Buy'],
+            ['NZDCHF', '6/5', '4/5', '6/5', '49', '6/5', '34%', 'Sell']
+        ];
+
+        // Filter data based on current view
+        let fallbackData;
+        if (currentDataSource === '10pair') {
+            fallbackData = allFallbackData.filter(row => majorPairs.includes(row[0]));
+        } else {
+            fallbackData = allFallbackData;
         }
 
-        // Show/hide loading indicator
-        function showLoading(show) {
-            const loadingIndicator = document.getElementById('loadingIndicator');
-            const tableContainer = document.getElementById('tableContainer');
-            const errorIndicator = document.getElementById('errorIndicator');
-            
-            if (show) {
-                loadingIndicator.style.display = 'block';
-                tableContainer.style.display = 'none';
-                errorIndicator.style.display = 'none';
-            } else {
-                loadingIndicator.style.display = 'none';
-                tableContainer.style.display = 'block';
-            }
-        }
+        // Convert static data to processed format
+        processedTableData = fallbackData.map(row => ({
+            pair: row[0],
+            currencyStrength: row[1],
+            cciStrength: row[2],
+            bbPercent: row[3],
+            rsiBreakout: parseInt(row[4]),
+            overallRanking: row[5],
+            confidence: parseInt(row[6].replace('%', '')),
+            signal: row[7] || getEntrySignalFromRanking(row[5])
+        }));
 
-        // Show error message
-        function showError(message) {
-            const loadingIndicator = document.getElementById('loadingIndicator');
-            const tableContainer = document.getElementById('tableContainer');
-            const errorIndicator = document.getElementById('errorIndicator');
-            
-            loadingIndicator.style.display = 'none';
+        populateTable();
+        generateSummary();
+        showLoading(false);
+        console.log(`Fallback static data loaded successfully for ${currentDataSource}`);
+    }
+
+    // Show/hide loading indicator
+    function showLoading(show) {
+        const loadingIndicator = document.getElementById('loadingIndicator');
+        const tableContainer = document.getElementById('tableContainer');
+        const errorIndicator = document.getElementById('errorIndicator');
+        
+        if (show) {
+            loadingIndicator.style.display = 'block';
             tableContainer.style.display = 'none';
-            errorIndicator.style.display = 'block';
-            errorIndicator.innerHTML = `
-                <strong>エラー:</strong> ${message}<br>
-                <small>静的データで代替表示しています。</small><br>
-                <button onclick="loadForexData()" style="margin-top: 10px; padding: 5px 10px; background: #007AFF; color: white; border: none; border-radius: 4px; cursor: pointer;">再試行</button>
-            `;
+            errorIndicator.style.display = 'none';
+        } else {
+            loadingIndicator.style.display = 'none';
+            tableContainer.style.display = 'block';
         }
+    }
 
-        // Process forex data from JSON
-        function processForexData(data) {
-            const processed = [];
-            
-            for (const [pairName, pairData] of Object.entries(data)) {
-                processed.push({
-                    pair: pairName,
-                    currencyStrength: pairData.Currency_Strength_Rank_all_pair,
-                    cciStrength: pairData.CCI_Currency_Strength_Rank_all_pair,
-                    bbPercent: pairData.BB_percent_ranking,
-                    rsiBreakout: pairData.RSI_breakout,
-                    overallRanking: pairData.Overall_Ranking,
-                    confidence: pairData.Confidence,
-                    signal: pairData.Signal || getEntrySignalFromRanking(pairData.Overall_Ranking)
-                });
-            }
-            
-            return processed;
-        }
-
-        // Generate summary section
-        function generateSummary() {
-            const now = new Date();
-            const hour = now.toLocaleTimeString('en-GB', { hour: '2-digit', hour12: false });
-            const lastUpdatedTime = `${hour}:00`;
-
-            const summaryTitle = document.getElementById('summaryTitle');
-            const summaryPair = document.getElementById('summaryPair');
-            const summaryEntry = document.getElementById('summaryEntry');
-            const summaryTime = document.getElementById('summaryTime');
-            
-            // Find top confidence pair
-            const topPair = processedTableData.slice().sort((a, b) => b.confidence - a.confidence)[0];
-
-            if (topPair) {
-                const entrySignal = topPair.signal;
-                
-                summaryTitle.textContent = `${lastUpdatedTime}の最有力分析結果（仮説）`;
-                summaryPair.textContent = topPair.pair;
-                summaryEntry.textContent = entrySignal === 'Buy' ? '上方向傾向' : 
-                                         entrySignal === 'Sell' ? '下方向傾向' : '中立傾向';
-                summaryEntry.className = `summary-entry ${entrySignal === 'Buy' ? 'up' : entrySignal === 'Sell' ? 'down' : 'neutral'}`;
-                summaryTime.textContent = `最終更新: ${lastUpdatedTime} | 期待度: ${topPair.confidence}%`;
-            }
-        }
-
-        // Modified populateTable function - replace the existing one
-        function populateTable() {
-            const tbody = document.getElementById('dataTable');
-            tbody.innerHTML = ''; // Clear existing data
-            
-            const top3Confidence = getTop3ConfidenceWithMedals();
-            const top3ConfidenceValues = Object.keys(top3Confidence).map(k => parseInt(k));
-            
-            // Sort by confidence descending
-            const sortedData = processedTableData.slice().sort((a, b) => b.confidence - a.confidence);
-            
-            sortedData.forEach(row => {
-                const tr = document.createElement('tr');
-                const entrySignal = getDirectionFromSignal(row.signal);
-                const isTop3 = top3ConfidenceValues.includes(row.confidence);
-                
-                // Only show medal if signal is NOT "中立傾向" (Stay/Hold)
-                const shouldShowMedal = entrySignal !== '中立傾向';
-                const medal = (isTop3 && shouldShowMedal) ? (top3Confidence[row.confidence.toString()] || '') : '';
-                
-                // Determine entry class based on signal type
-                let entryClass = 'entry-normal';
-                if (entrySignal === '上方向傾向') {
-                    entryClass = 'entry-buy';
-                } else if (entrySignal === '下方向傾向') {
-                    entryClass = 'entry-sell';
-                } else if (entrySignal === '中立傾向') {
-                    entryClass = 'entry-stay';
-                }
-                
-                tr.innerHTML = `
-                    <td class="pair-name">${row.pair}</td>
-                    <td class="${isExtremeRSI(row.rsiBreakout) ? 'highlight-rsi-extreme' : ''}">${row.rsiBreakout}</td>
-                    <td class="${isExtremeRanking(row.currencyStrength) ? 'highlight-extreme-ranking' : ''}">${row.currencyStrength}</td>
-                    <td class="${isExtremeRanking(row.cciStrength) ? 'highlight-extreme-ranking' : ''}">${row.cciStrength}</td>
-                    <td class="${isExtremeRanking(row.bbPercent) ? 'highlight-extreme-ranking' : ''}">${row.bbPercent}</td>
-                    <td class="${isExtremeRanking(row.overallRanking) ? 'highlight-extreme-ranking' : ''}">${row.overallRanking}</td>
-                    <td class="${isTop3 ? 'highlight-top3' : ''}">${medal}${row.confidence}%</td>
-                    <td><span class="${entryClass}">${entrySignal}</span></td>
-                `;
-                tbody.appendChild(tr);
+    // Process forex data from JSON
+    function processForexData(data) {
+        const processed = [];
+        
+        for (const [pairName, pairData] of Object.entries(data)) {
+            processed.push({
+                pair: pairName,
+                currencyStrength: pairData.Currency_Strength_Rank_all_pair,
+                cciStrength: pairData.CCI_Currency_Strength_Rank_all_pair,
+                bbPercent: pairData.BB_percent_ranking,
+                rsiBreakout: pairData.RSI_breakout,
+                overallRanking: pairData.Overall_Ranking,
+                confidence: pairData.Confidence,
+                signal: pairData.Signal || getEntrySignalFromRanking(pairData.Overall_Ranking)
             });
         }
+        
+        return processed;
+    }
 
-        // Convert Buy/Sell signal to Japanese direction
-        function getDirectionFromSignal(signal) {
-            if (signal === 'Buy') return '上方向傾向';
-            if (signal === 'Sell') return '下方向傾向';
-            return '中立傾向';
-        }
+    // Generate summary section
+    function generateSummary() {
+        const now = new Date();
+        const hour = now.toLocaleTimeString('en-GB', { hour: '2-digit', hour12: false });
+        const lastUpdatedTime = `${hour}:00`;
 
-        // Get entry signal from ranking (fallback)
-        function getEntrySignalFromRanking(ranking) {
-            const parts = ranking.split('/');
-            const leftNumber = parseInt(parts[0]);
-            const rightNumber = parseInt(parts[1]);
-            if (leftNumber > rightNumber) return 'Buy';
-            if (leftNumber < rightNumber) return 'Sell';
-            return 'Hold';
-        }
+        const summaryTitle = document.getElementById('summaryTitle');
+        const summaryPair = document.getElementById('summaryPair');
+        const summaryEntry = document.getElementById('summaryEntry');
+        const summaryTime = document.getElementById('summaryTime');
+        
+        // Find top confidence pair
+        const topPair = processedTableData.slice().sort((a, b) => b.confidence - a.confidence)[0];
 
-        // Check if ranking is extreme (1/8 or 8/1)
-        function isExtremeRanking(value) {
-            return value === '1/8' || value === '8/1';
-        }
-
-        // Check if RSI is extreme (>70 or <30)
-        function isExtremeRSI(value) {
-            return value >= 70 || value <= 30;
-        }
-
-        // Get top 3 confidence values with medals
-        function getTop3ConfidenceWithMedals() {
-            const confidenceValues = processedTableData
-                .map(item => item.confidence)
-                .sort((a, b) => b - a)
-                .slice(0, 3);
+        if (topPair) {
+            const entrySignal = topPair.signal;
             
-            const medals = ['🥇', '🥈', '🥉'];
-            const result = {};
-            
-            confidenceValues.forEach((confidence, index) => {
-                result[confidence.toString()] = medals[index] || '';
-            });
-            
-            return result;
+            summaryTitle.textContent = `${lastUpdatedTime}の最有力分析結果（仮説）`;
+            summaryPair.textContent = topPair.pair;
+            summaryEntry.textContent = entrySignal === 'Buy' ? '上方向傾向' : 
+                                    entrySignal === 'Sell' ? '下方向傾向' : '中立傾向';
+            summaryEntry.className = `summary-entry ${entrySignal === 'Buy' ? 'up' : entrySignal === 'Sell' ? 'down' : 'neutral'}`;
+            summaryTime.textContent = `最終更新: ${lastUpdatedTime} | 期待度: ${topPair.confidence}%`;
         }
-
-        // Modal functionality
-        function showModal(src) {
-            const modal = document.getElementById("imageModal");
-            const modalImg = document.getElementById("modalImage");
-            modal.style.display = "flex";
-            modalImg.src = src;
+    }
+function populateTable() {
+    const tbody = document.getElementById('dataTable');
+    tbody.innerHTML = ''; // Clear existing data
+    
+    const top3Confidence = getTop3ConfidenceWithMedals();
+    const top3ConfidenceValues = Object.keys(top3Confidence).map(k => parseInt(k));
+    
+    // Sort by confidence descending
+    const sortedData = processedTableData.slice().sort((a, b) => b.confidence - a.confidence);
+    
+    sortedData.forEach(row => {
+        const tr = document.createElement('tr');
+        const entrySignal = getDirectionFromSignal(row.signal);
+        const isTop3 = top3ConfidenceValues.includes(row.confidence);
+        
+        // Only show medal and highlighting if signal is NOT "中立傾向" (Stay)
+        const isStaySignal = entrySignal === '中立傾向';
+        const shouldShowMedal = (isTop3 && !isStaySignal);
+        const medal = shouldShowMedal ? (top3Confidence[row.confidence.toString()] || '') : '';
+        
+        // Determine entry class based on signal type
+        let entryClass = 'entry-normal';
+        if (entrySignal === '上方向傾向') {
+            entryClass = 'entry-buy';
+        } else if (entrySignal === '下方向傾向') {
+            entryClass = 'entry-sell';
+        } else if (entrySignal === '中立傾向') {
+            entryClass = 'entry-stay';
         }
+        
+        // Confidence styling: normal for Stay signals, highlighted for Buy/Sell
+        const confidenceClass = (isTop3 && !isStaySignal) ? 'highlight-top3' : '';
+        
+        tr.innerHTML = `
+            <td class="pair-name">${row.pair}</td>
+            <td class="${isExtremeRSI(row.rsiBreakout) ? 'highlight-rsi-extreme' : ''}">${row.rsiBreakout}</td>
+            <td class="${isExtremeRanking(row.currencyStrength) ? 'highlight-extreme-ranking' : ''}">${row.currencyStrength}</td>
+            <td class="${isExtremeRanking(row.cciStrength) ? 'highlight-extreme-ranking' : ''}">${row.cciStrength}</td>
+            <td class="${isExtremeRanking(row.bbPercent) ? 'highlight-extreme-ranking' : ''}">${row.bbPercent}</td>
+            <td class="${isExtremeRanking(row.overallRanking) ? 'highlight-extreme-ranking' : ''}">${row.overallRanking}</td>
+            <td class="${confidenceClass}">${medal}${row.confidence}%</td>
+            <td><span class="${entryClass}">${entrySignal}</span></td>
+        `;
+        tbody.appendChild(tr);
+    });
+}
 
-        function closeModal() {
-            const modal = document.getElementById("imageModal");
-            modal.style.display = "none";
-        }
+    // Convert Buy/Sell signal to Japanese direction
+    function getDirectionFromSignal(signal) {
+        if (signal === 'Buy') return '上方向傾向';
+        if (signal === 'Sell') return '下方向傾向';
+        return '中立傾向';
+    }
 
-        // Refresh data function
-        function refreshData() {
-            console.log('Refreshing forex data...');
-            loadForexData();
-        }
+    // Get entry signal from ranking (fallback)
+    function getEntrySignalFromRanking(ranking) {
+        const parts = ranking.split('/');
+        const leftNumber = parseInt(parts[0]);
+        const rightNumber = parseInt(parts[1]);
+        if (leftNumber > rightNumber) return 'Buy';
+        if (leftNumber < rightNumber) return 'Sell';
+        return 'Hold';
+    }
 
-        // Auto-refresh at specific times
-        function startAutoRefreshAt05(runNow = false) {
-            if (runNow) refreshData();
+    // Check if ranking is extreme (1/8 or 8/1)
+    function isExtremeRanking(value) {
+        return value === '1/8' || value === '8/1';
+    }
 
-            function scheduleNext() {
-                const now = new Date();
-                const next = new Date(now);
+    // Check if RSI is extreme (>70 or <30)
+    function isExtremeRSI(value) {
+        return value >= 70 || value <= 30;
+    }
 
-                // Set to next :05 mark
-                next.setHours(now.getMinutes() < 5 ? now.getHours() : now.getHours() + 1);
-                next.setMinutes(5, 0, 0);
-
-                const delay = next - now;
-
-                refreshTimer = setTimeout(() => {
-                    refreshData();
-                    scheduleNext();
-                }, delay);
-            }
-
-            scheduleNext();
-            console.log('Auto-refresh scheduled at every HH:05');
-        }
-
-        // File update checker
-        async function checkForUpdates() {
-            try {
-                const response = await fetch('./fx_signals.json?' + new Date().getTime());
-                if (response.ok) {
-                    const data = await response.json();
-                    const newDataString = JSON.stringify(data);
-                    const currentDataString = JSON.stringify({forexData});
-                    
-                    if (newDataString !== currentDataString) {
-                        console.log('JSON file updated, refreshing data...');
-                        loadForexData();
-                    }
-                }
-            } catch (error) {
-                console.log('Update check failed:', error.message);
-            }
-        }
-
-        function startUpdateChecker() {
-            setInterval(checkForUpdates, 300000); // 5 minutes
-            console.log('Update checker started (every 5 minutes)');
-        }
-
-        // Initialize everything when DOM is loaded
-        document.addEventListener('DOMContentLoaded', () => {
-            console.log('Initializing FX Analysis Tool...');
-            
-            loadForexData();
-            startAutoRefreshAt05();
-            startUpdateChecker();
+    // Get top 3 confidence values with medals
+    function getTop3ConfidenceWithMedals() {
+        const confidenceValues = processedTableData
+            .map(item => item.confidence)
+            .sort((a, b) => b - a)
+            .slice(0, 3);
+        
+        const medals = ['🥇', '🥈', '🥉'];
+        const result = {};
+        
+        confidenceValues.forEach((confidence, index) => {
+            result[confidence.toString()] = medals[index] || '';
         });
+        
+        return result;
+    }
 
-        // Export functions for external use
-        window.ForexDataManager = {
-            refresh: refreshData,
-            getData: () => processedTableData,
-            getRawData: () => forexData,
-            loadFromFile: loadForexData
-        };
+    // Refresh data function
+    function refreshData() {
+        console.log('Refreshing forex data...');
+        loadForexData();
+    }
+
+    // Auto-refresh at specific times
+    function startAutoRefreshAt05(runNow = false) {
+        if (runNow) refreshData();
+
+        function scheduleNext() {
+            const now = new Date();
+            const next = new Date(now);
+
+            // Set to next :05 mark
+            next.setHours(now.getMinutes() < 5 ? now.getHours() : now.getHours() + 1);
+            next.setMinutes(5, 0, 0);
+
+            const delay = next - now;
+
+            refreshTimer = setTimeout(() => {
+                refreshData();
+                scheduleNext();
+            }, delay);
+        }
+
+        scheduleNext();
+        console.log('Auto-refresh scheduled at every HH:05');
+    }
+
+    // File update checker
+    async function checkForUpdates() {
+        try {
+            const fileName = `fx_signals_${currentDataSource}.json`;
+            const response = await fetch(`./${fileName}?` + new Date().getTime());
+            if (response.ok) {
+                const data = await response.json();
+                const newDataString = JSON.stringify(data);
+                const currentDataString = JSON.stringify({forexData});
+                
+                if (newDataString !== currentDataString) {
+                    console.log(`${fileName} updated, refreshing data...`);
+                    loadForexData();
+                }
+            }
+        } catch (error) {
+            console.log('Update check failed:', error.message);
+        }
+    }
+
+    function startUpdateChecker() {
+        setInterval(checkForUpdates, 300000); // 5 minutes
+        console.log('Update checker started (every 5 minutes)');
+    }
+
+    // Initialize everything when DOM is loaded
+    document.addEventListener('DOMContentLoaded', () => {
+        console.log('Initializing FX Analysis Tool...');
+        
+        // Load default data (28pair)
+        loadForexData();
+        startAutoRefreshAt05();
+        startUpdateChecker();
+    });
+
+    // Export functions for external use
+    window.ForexDataManager = {
+        refresh: refreshData,
+        getData: () => processedTableData,
+        getRawData: () => forexData,
+        loadFromFile: loadForexData,
+        switchView: switchPairView,
+        getCurrentView: () => currentDataSource
+    };
     </script>
 </body>
 </html>

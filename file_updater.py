@@ -5,9 +5,9 @@ import json
 from datetime import datetime
 
 # Configuration
-SOURCE_BASE_PATH = r"C:\Users\thure\AppData\Roaming\MetaQuotes\Terminal\EE0304F13905552AE0B5EAEFB04866EB\MQL5\Files"
-DESTINATION_BASE_PATH = r"C:\Users\thure\CounterTrader"
-GIT_REPO_PATH = r"C:\Users\thure\CounterTrader"
+SOURCE_BASE_PATH = r"C:\Users\MT4ver2-e18-AZIzrF0D\AppData\Roaming\MetaQuotes\Terminal\7E59B46FD773C6FE7B889FC92951284D\MQL5\Files"
+DESTINATION_BASE_PATH = r"C:\Users\MT4ver2-e18-AZIzrF0D\CounterTrader\counter_trader"
+GIT_REPO_PATH = r"C:\Users\MT4ver2-e18-AZIzrF0D\CounterTrader\counter_trader"
 
 # File configurations
 FILES_CONFIG = [

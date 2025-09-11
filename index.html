@@ -1245,8 +1245,38 @@ function populateTable() {
     const top3ConfidenceValues = Object.keys(top3Confidence).map(k => parseInt(k));
     
     // Sort by confidence descending
-    const sortedData = processedTableData.slice().sort((a, b) => b.confidence - a.confidence);
-    
+    // Sort by signal priority first (Buy/Sell before Hold), then by confidence descending, then by signal type
+    const sortedData = processedTableData.slice().sort((a, b) => {
+        // Define signal priority (lower number = higher priority)
+        const getSignalPriority = (signal) => {
+            if (signal === 'Buy' || signal === 'Sell') return 1;  // 上方向傾向 and 下方向傾向
+            return 2;  // 中立傾向 (Hold/Stay)
+        };
+        
+        // Define signal type priority for tie-breaking (when confidence is same)
+        const getSignalTypePriority = (signal) => {
+            if (signal === 'Sell') return 1;  // 下方向傾向 first
+            if (signal === 'Buy') return 2;   // 上方向傾向 second
+            return 3;  // 中立傾向 last
+        };
+        
+        const priorityA = getSignalPriority(a.signal);
+        const priorityB = getSignalPriority(b.signal);
+        
+        // First sort by signal priority (Buy/Sell vs Hold)
+        if (priorityA !== priorityB) {
+            return priorityA - priorityB;
+        }
+        
+        // If same priority, sort by confidence descending
+        if (a.confidence !== b.confidence) {
+            return b.confidence - a.confidence;
+        }
+        
+        // If same confidence, sort by signal type (Sell before Buy)
+        return getSignalTypePriority(a.signal) - getSignalTypePriority(b.signal);
+    });
+
     sortedData.forEach(row => {
         const tr = document.createElement('tr');
         const entrySignal = getDirectionFromSignal(row.signal);
@@ -1301,9 +1331,14 @@ function populateTable() {
         return 'Hold';
     }
 
-    // Check if ranking is extreme (1/8 or 8/1)
+    // Check if ranking is extreme based on current data source
     function isExtremeRanking(value) {
-        return value === '1/8' || value === '8/1';
+        if (currentDataSource === '28pair') {
+            return value === '1/8' || value === '8/1';
+        } else if (currentDataSource === '10pair') {
+            return value === '1/5' || value === '5/1';
+        }
+        return false;
     }
 
     // Check if RSI is extreme (>70 or <30)

@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Increase FX - Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', 'Noto Sans JP', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            color: #1a1a1a;
+            line-height: 1.6;
+            letter-spacing: -0.01em;
+            font-size: 1.09rem;
+            text-rendering: optimizeLegibility;
+            font-smooth: always;
+            -webkit-font-smoothing: antialiased;
+            background: #fcfcfd;
+            margin: 0;
+            padding: 0;
+        }
+
+        .password-page {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 24px;
+            background: #fcfcfd;
+        }
+
+        .nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.85);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            z-index: 1000;
+            padding: 16px 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 24px;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -0.05em;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #007AFF, #34C759);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            cursor: pointer;
+        }
+
+        .password-container {
+            width: 100%;
+            max-width: 400px;
+            background: #fff;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        .password-container h2 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: #1a1a1a;
+        }
+
+        .password-container form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .password-container input[type="password"] {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.2rem;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            text-align: center;
+            transition: border-color 0.3s ease;
+        }
+
+        .password-container input[type="password"]:focus {
+            outline: none;
+            border-color: #007AFF;
+            box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.1);
+        }
+
+        .password-container button {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #fff;
+            background: linear-gradient(90deg, #007AFF, #34C759);
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .password-container button:hover:not(:disabled) {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        .password-container button:disabled {
+            opacity: 0.6;
+            transform: none;
+            cursor: not-allowed;
+        }
+
+        .password-container .error-message {
+            color: #e53935;
+            margin-top: 10px;
+            display: none;
+            font-size: 0.95rem;
+        }
+
+        .password-container .loading {
+            color: #666;
+            margin-top: 10px;
+            display: none;
+            font-size: 0.95rem;
+        }
+
+        .success-message {
+            background: linear-gradient(135deg, #d1f2eb, #a3e9d0);
+            border: 2px solid #27ae60;
+            border-radius: 16px;
+            padding: 20px;
+            margin-top: 20px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1e8449;
+            text-align: center;
+            display: none;
+            box-shadow: 0 8px 25px rgba(39, 174, 96, 0.2);
+            animation: slideInSuccess 0.5s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .success-message::before {
+            content: '✓';
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #27ae60;
+        }
+
+        .success-message::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shimmer 1.5s ease-in-out;
+        }
+
+        @keyframes slideInSuccess {
+            from {
+                opacity: 0;
+                transform: translateY(-20px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                left: -100%;
+            }
+            100% {
+                left: 100%;
+            }
+        }
+
+        .security-note {
+            background: #f0f9ff;
+            border: 1px solid #bfdbfe;
+            border-radius: 8px;
+            padding: 12px;
+            margin-top: 16px;
+            font-size: 0.85rem;
+            color: #1e40af;
+        }
+
+        .footer {
+            background: #fafafc;
+            padding: 60px 24px;
+            text-align: center;
+            border-top: 1px solid rgba(0, 0, 0, 0.08);
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .footer p {
+            color: #aaaaaa;
+            font-size: 0.85rem;
+            line-height: 1.6;
+            letter-spacing: 0.02em;
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            .password-container {
+                margin: 20px;
+                padding: 30px 20px;
+            }
+
+            .password-container h2 {
+                font-size: 1.4rem;
+            }
+
+            .password-container input[type="password"],
+            .password-container button {
+                font-size: 1.1rem;
+                padding: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="passwordPage" class="password-page">
+        <nav class="nav">
+            <div class="nav-container">
+                <span class="logo">Increase FX</span>
+            </div>
+        </nav>
+        <div class="password-container">
+            <h2>パスワードを入力してください</h2>
+            <form id="loginForm">
+                <input type="password" id="passwordInput" placeholder="パスワード" autocomplete="current-password" required>
+                <button type="submit" id="loginButton">ログイン</button>
+            </form>
+            <div id="loadingMessage" class="loading">認証中...</div>
+            <div id="successMessage" class="success-message">ログイン成功！リダイレクト中...</div>
+            <p id="errorMessage" class="error-message"></p>
+
+        </div>
+        <footer class="footer">
+            <p>&copy; 2025 Increase FX. Counter trade analysis made accessible to everyone.</p>
+        </footer>
+    </div>
+
+    <script>
+        const loginForm = document.getElementById('loginForm');
+        const passwordInput = document.getElementById('passwordInput');
+        const loginButton = document.getElementById('loginButton');
+        const errorMessage = document.getElementById('errorMessage');
+        const loadingMessage = document.getElementById('loadingMessage');
+        const successMessage = document.getElementById('successMessage');
+
+        // Handle form submission
+        loginForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            
+            const password = passwordInput.value.trim();
+            
+            if (!password) {
+                showError('パスワードを入力してください。');
+                return;
+            }
+
+            setLoadingState(true);
+
+            try {
+                const response = await fetch('/api/auth', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ password }),
+                    credentials: 'same-origin'
+                });
+
+                const result = await response.json();
+
+                if (response.ok && result.success) {
+                    // Show only the beautiful success message - NO alert popup
+                    showSuccess();
+                    
+                    // Redirect after showing success message
+                    setTimeout(() => {
+                        window.location.href = '/';
+                    }, 2000);
+                } else {
+                    // Authentication failed
+                    showError(result.message || 'パスワードが間違っています。');
+                    passwordInput.value = '';
+                    passwordInput.focus();
+                }
+            } catch (error) {
+                console.error('Authentication error:', error);
+                showError('サーバーエラーが発生しました。もう一度お試しください。');
+            } finally {
+                setLoadingState(false);
+            }
+        });
+
+        function showError(message) {
+            errorMessage.textContent = message;
+            errorMessage.style.display = 'block';
+            successMessage.style.display = 'none';
+            
+            // Hide error message after 4 seconds
+            setTimeout(() => {
+                errorMessage.style.display = 'none';
+            }, 4000);
+        }
+
+        function showSuccess() {
+            successMessage.style.display = 'block';
+            errorMessage.style.display = 'none';
+        }
+
+        function setLoadingState(isLoading) {
+            if (isLoading) {
+                loginButton.disabled = true;
+                loadingMessage.style.display = 'block';
+                errorMessage.style.display = 'none';
+                successMessage.style.display = 'none';
+            } else {
+                loginButton.disabled = false;
+                loadingMessage.style.display = 'none';
+            }
+        }
+
+        // Focus on password input when page loads
+        window.addEventListener('load', () => {
+            passwordInput.focus();
+        });
+    </script>
+</body>
+</html>

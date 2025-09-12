@@ -1,0 +1,23 @@
+[build]
+  publish = "."
+  command = "echo 'Static site - no build required'"
+
+[[edge_functions]]
+  function = "auth"
+  path = "/"
+
+[[edge_functions]]
+  function = "auth"
+  path = "/index.html"
+
+[[edge_functions]]
+  function = "auth"
+  path = "/api/auth"
+
+[[edge_functions]]
+  function = "auth"
+  path = "/api/admin/change-password"
+
+[context.production.environment]
+  SUPABASE_URL = "https://zrukeuppdxsdujehktbp.supabase.co"
+  SUPABASE_SERVICE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpydWtldXBwZHhzZHVqZWhrdGJwIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc1NzU3NzQ4OSwiZXhwIjoyMDczMTUzNDg5fQ.YspMDHa-zZMXMsAXqKhGUZ_VZNjLJXo1wpsbFz1ipx8"

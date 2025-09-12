@@ -4,7 +4,7 @@
       "Currency_Strength_Rank_all_pair": "4/5",
       "CCI_Currency_Strength_Rank_all_pair": "5/4",
       "BB_percent_ranking": "4/5",
-      "RSI_breakout": 49,
+      "RSI_breakout": 50,
       "Overall_Ranking": "4/5",
       "Confidence": 11,
       "Signal": "Stay"
@@ -13,16 +13,16 @@
       "Currency_Strength_Rank_all_pair": "3/4",
       "CCI_Currency_Strength_Rank_all_pair": "3/5",
       "BB_percent_ranking": "3/4",
-      "RSI_breakout": 55,
+      "RSI_breakout": 54,
       "Overall_Ranking": "3/4",
-      "Confidence": 28,
+      "Confidence": 23,
       "Signal": "Stay"
     },
     "GBPUSD": {
       "Currency_Strength_Rank_all_pair": "2/4",
       "CCI_Currency_Strength_Rank_all_pair": "2/5",
       "BB_percent_ranking": "2/4",
-      "RSI_breakout": 58,
+      "RSI_breakout": 56,
       "Overall_Ranking": "2/4",
       "Confidence": 51,
       "Signal": "Stay"
@@ -31,9 +31,9 @@
       "Currency_Strength_Rank_all_pair": "1/4",
       "CCI_Currency_Strength_Rank_all_pair": "1/5",
       "BB_percent_ranking": "1/4",
-      "RSI_breakout": 69,
+      "RSI_breakout": 70,
       "Overall_Ranking": "1/4",
-      "Confidence": 72,
+      "Confidence": 87,
       "Signal": "Sell"
     },
     "EURJPY": {
@@ -58,7 +58,7 @@
       "Currency_Strength_Rank_all_pair": "1/5",
       "CCI_Currency_Strength_Rank_all_pair": "1/4",
       "BB_percent_ranking": "1/5",
-      "RSI_breakout": 76,
+      "RSI_breakout": 77,
       "Overall_Ranking": "1/5",
       "Confidence": 93,
       "Signal": "Sell"
@@ -67,16 +67,16 @@
       "Currency_Strength_Rank_all_pair": "3/2",
       "CCI_Currency_Strength_Rank_all_pair": "3/2",
       "BB_percent_ranking": "3/2",
-      "RSI_breakout": 44,
+      "RSI_breakout": 46,
       "Overall_Ranking": "3/2",
-      "Confidence": 40,
+      "Confidence": 35,
       "Signal": "Stay"
     },
     "EURAUD": {
       "Currency_Strength_Rank_all_pair": "3/1",
       "CCI_Currency_Strength_Rank_all_pair": "3/1",
       "BB_percent_ranking": "3/1",
-      "RSI_breakout": 25,
+      "RSI_breakout": 22,
       "Overall_Ranking": "3/1",
       "Confidence": 75,
       "Signal": "Buy"
@@ -85,7 +85,7 @@
       "Currency_Strength_Rank_all_pair": "2/1",
       "CCI_Currency_Strength_Rank_all_pair": "2/1",
       "BB_percent_ranking": "2/1",
-      "RSI_breakout": 25,
+      "RSI_breakout": 24,
       "Overall_Ranking": "2/1",
       "Confidence": 54,
       "Signal": "Buy"

@@ -41,8 +41,8 @@
       "Overall_Ranking": "1/4",
       "Confidence": 72,
       "Signal": "Sell",
-      "TRIGGER": "OFF",
-      "TRIGGER_REASON": "NONE"
+      "TRIGGER": "ON",
+      "TRIGGER_REASON": "T_3"
     },
     "EURJPY": {
       "Currency_Strength_Rank_all_pair": "3/4",

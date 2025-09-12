@@ -96,8 +96,8 @@
       "Overall_Ranking": "1/7",
       "Confidence": 70,
       "Signal": "Sell",
-      "TRIGGER": "OFF",
-      "TRIGGER_REASON": "NONE"
+      "TRIGGER": "ON",
+      "TRIGGER_REASON": "T_3"
     },
     "GBPUSD": {
       "Currency_Strength_Rank_all_pair": "5/7",
@@ -180,7 +180,7 @@
       "Currency_Strength_Rank_all_pair": "4/3",
       "CCI_Currency_Strength_Rank_all_pair": "3/4",
       "BB_percent_ranking": "3/4",
-      "RSI_breakout": 47,
+      "RSI_breakout": 48,
       "Overall_Ranking": "3/4",
       "Confidence": 11,
       "Signal": "Stay",
@@ -224,7 +224,7 @@
       "Currency_Strength_Rank_all_pair": "5/8",
       "CCI_Currency_Strength_Rank_all_pair": "5/6",
       "BB_percent_ranking": "5/6",
-      "RSI_breakout": 59,
+      "RSI_breakout": 58,
       "Overall_Ranking": "5/6",
       "Confidence": 19,
       "Signal": "Stay",
@@ -294,8 +294,8 @@
       "Overall_Ranking": "2/6",
       "Confidence": 60,
       "Signal": "Sell",
-      "TRIGGER": "OFF",
-      "TRIGGER_REASON": "NONE"
+      "TRIGGER": "ON",
+      "TRIGGER_REASON": "T_3"
     },
     "NZDCHF": {
       "Currency_Strength_Rank_all_pair": "2/3",

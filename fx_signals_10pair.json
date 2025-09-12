@@ -41,8 +41,8 @@
       "Overall_Ranking": "1/4",
       "Confidence": 70,
       "Signal": "Sell",
-      "TRIGGER": "ON",
-      "TRIGGER_REASON": "T_3"
+      "TRIGGER": "OFF",
+      "TRIGGER_REASON": "NONE"
     },
     "EURJPY": {
       "Currency_Strength_Rank_all_pair": "2/5",
@@ -96,8 +96,8 @@
       "Overall_Ranking": "2/1",
       "Confidence": 34,
       "Signal": "Buy",
-      "TRIGGER": "ON",
-      "TRIGGER_REASON": "T_3"
+      "TRIGGER": "OFF",
+      "TRIGGER_REASON": "NONE"
     },
     "GBPAUD": {
       "Currency_Strength_Rank_all_pair": "3/1",

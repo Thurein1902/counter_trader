@@ -52,8 +52,8 @@
       "Overall_Ranking": "2/8",
       "Confidence": 70,
       "Signal": "Sell",
-      "TRIGGER": "ON",
-      "TRIGGER_REASON": "T_3"
+      "TRIGGER": "OFF",
+      "TRIGGER_REASON": "NONE"
     },
     "CADJPY": {
       "Currency_Strength_Rank_all_pair": "7/8",
@@ -96,8 +96,8 @@
       "Overall_Ranking": "1/7",
       "Confidence": 65,
       "Signal": "Sell",
-      "TRIGGER": "ON",
-      "TRIGGER_REASON": "T_3"
+      "TRIGGER": "OFF",
+      "TRIGGER_REASON": "NONE"
     },
     "GBPUSD": {
       "Currency_Strength_Rank_all_pair": "5/6",
@@ -162,8 +162,8 @@
       "Overall_Ranking": "3/1",
       "Confidence": 34,
       "Signal": "Buy",
-      "TRIGGER": "ON",
-      "TRIGGER_REASON": "T_3"
+      "TRIGGER": "OFF",
+      "TRIGGER_REASON": "NONE"
     },
     "EURCAD": {
       "Currency_Strength_Rank_all_pair": "3/7",

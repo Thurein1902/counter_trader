@@ -7,7 +7,9 @@
       "RSI_breakout": 51,
       "Overall_Ranking": "7/8",
       "Confidence": 14,
-      "Signal": "Stay"
+      "Signal": "Stay",
+      "TRIGGER": "OFF",
+      "TRIGGER_REASON": "NONE"
     },
     "EURJPY": {
       "Currency_Strength_Rank_all_pair": "5/8",
@@ -16,7 +18,9 @@
       "RSI_breakout": 56,
       "Overall_Ranking": "3/8",
       "Confidence": 33,
-      "Signal": "Stay"
+      "Signal": "Stay",
+      "TRIGGER": "OFF",
+      "TRIGGER_REASON": "NONE"
     },
     "GBPJPY": {
       "Currency_Strength_Rank_all_pair": "3/8",
@@ -25,7 +29,9 @@
       "RSI_breakout": 60,
       "Overall_Ranking": "4/8",
       "Confidence": 34,
-      "Signal": "Stay"
+      "Signal": "Stay",
+      "TRIGGER": "OFF",
+      "TRIGGER_REASON": "NONE"
     },
     "AUDJPY": {
       "Currency_Strength_Rank_all_pair": "1/8",
@@ -34,7 +40,9 @@
       "RSI_breakout": 77,
       "Overall_Ranking": "1/8",
       "Confidence": 95,
-      "Signal": "Sell"
+      "Signal": "Sell",
+      "TRIGGER": "OFF",
+      "TRIGGER_REASON": "NONE"
     },
     "NZDJPY": {
       "Currency_Strength_Rank_all_pair": "2/8",
@@ -43,7 +51,9 @@
       "RSI_breakout": 70,
       "Overall_Ranking": "2/8",
       "Confidence": 85,
-      "Signal": "Sell"
+      "Signal": "Sell",
+      "TRIGGER": "OFF",
+      "TRIGGER_REASON": "NONE"
     },
     "CADJPY": {
       "Currency_Strength_Rank_all_pair": "7/8",
@@ -52,7 +62,9 @@
       "RSI_breakout": 50,
       "Overall_Ranking": "6/8",
       "Confidence": 14,
-      "Signal": "Stay"
+      "Signal": "Stay",
+      "TRIGGER": "OFF",
+      "TRIGGER_REASON": "NONE"
     },
     "CHFJPY": {
       "Currency_Strength_Rank_all_pair": "4/8",
@@ -61,7 +73,9 @@
       "RSI_breakout": 57,
       "Overall_Ranking": "5/8",
       "Confidence": 25,
-      "Signal": "Stay"
+      "Signal": "Stay",
+      "TRIGGER": "OFF",
+      "TRIGGER_REASON": "NONE"
     },
     "EURUSD": {
       "Currency_Strength_Rank_all_pair": "5/6",
@@ -70,7 +84,9 @@
       "RSI_breakout": 55,
       "Overall_Ranking": "3/7",
       "Confidence": 33,
-      "Signal": "Stay"
+      "Signal": "Stay",
+      "TRIGGER": "OFF",
+      "TRIGGER_REASON": "NONE"
     },
     "AUDUSD": {
       "Currency_Strength_Rank_all_pair": "1/6",
@@ -79,7 +95,9 @@
       "RSI_breakout": 68,
       "Overall_Ranking": "1/7",
       "Confidence": 65,
-      "Signal": "Sell"
+      "Signal": "Sell",
+      "TRIGGER": "ON",
+      "TRIGGER_REASON": "T_3"
     },
     "GBPUSD": {
       "Currency_Strength_Rank_all_pair": "3/6",
@@ -88,7 +106,9 @@
       "RSI_breakout": 57,
       "Overall_Ranking": "4/7",
       "Confidence": 29,
-      "Signal": "Stay"
+      "Signal": "Stay",
+      "TRIGGER": "OFF",
+      "TRIGGER_REASON": "NONE"
     },
     "NZDUSD": {
       "Currency_Strength_Rank_all_pair": "2/6",
@@ -97,7 +117,9 @@
       "RSI_breakout": 64,
       "Overall_Ranking": "2/7",
       "Confidence": 51,
-      "Signal": "Stay"
+      "Signal": "Stay",
+      "TRIGGER": "OFF",
+      "TRIGGER_REASON": "NONE"
     },
     "USDCHF": {
       "Currency_Strength_Rank_all_pair": "6/4",
@@ -106,7 +128,9 @@
       "RSI_breakout": 46,
       "Overall_Ranking": "7/5",
       "Confidence": 20,
-      "Signal": "Stay"
+      "Signal": "Stay",
+      "TRIGGER": "OFF",
+      "TRIGGER_REASON": "NONE"
     },
     "USDCAD": {
       "Currency_Strength_Rank_all_pair": "6/7",
@@ -115,7 +139,9 @@
       "RSI_breakout": 52,
       "Overall_Ranking": "7/6",
       "Confidence": 11,
-      "Signal": "Stay"
+      "Signal": "Stay",
+      "TRIGGER": "OFF",
+      "TRIGGER_REASON": "NONE"
     },
     "EURGBP": {
       "Currency_Strength_Rank_all_pair": "5/3",
@@ -124,7 +150,9 @@
       "RSI_breakout": 46,
       "Overall_Ranking": "3/4",
       "Confidence": 14,
-      "Signal": "Stay"
+      "Signal": "Stay",
+      "TRIGGER": "OFF",
+      "TRIGGER_REASON": "NONE"
     },
     "EURAUD": {
       "Currency_Strength_Rank_all_pair": "5/1",
@@ -133,7 +161,9 @@
       "RSI_breakout": 27,
       "Overall_Ranking": "3/1",
       "Confidence": 52,
-      "Signal": "Buy"
+      "Signal": "Buy",
+      "TRIGGER": "OFF",
+      "TRIGGER_REASON": "NONE"
     },
     "EURCAD": {
       "Currency_Strength_Rank_all_pair": "5/7",
@@ -142,7 +172,9 @@
       "RSI_breakout": 59,
       "Overall_Ranking": "3/6",
       "Confidence": 33,
-      "Signal": "Stay"
+      "Signal": "Stay",
+      "TRIGGER": "OFF",
+      "TRIGGER_REASON": "NONE"
     },
     "EURCHF": {
       "Currency_Strength_Rank_all_pair": "5/4",
@@ -151,7 +183,9 @@
       "RSI_breakout": 49,
       "Overall_Ranking": "3/5",
       "Confidence": 14,
-      "Signal": "Stay"
+      "Signal": "Stay",
+      "TRIGGER": "OFF",
+      "TRIGGER_REASON": "NONE"
     },
     "EURNZD": {
       "Currency_Strength_Rank_all_pair": "5/2",
@@ -160,7 +194,9 @@
       "RSI_breakout": 34,
       "Overall_Ranking": "3/2",
       "Confidence": 37,
-      "Signal": "Stay"
+      "Signal": "Stay",
+      "TRIGGER": "ON",
+      "TRIGGER_REASON": "T_3"
     },
     "GBPAUD": {
       "Currency_Strength_Rank_all_pair": "3/1",
@@ -169,7 +205,9 @@
       "RSI_breakout": 27,
       "Overall_Ranking": "4/1",
       "Confidence": 52,
-      "Signal": "Buy"
+      "Signal": "Buy",
+      "TRIGGER": "OFF",
+      "TRIGGER_REASON": "NONE"
     },
     "GBPCHF": {
       "Currency_Strength_Rank_all_pair": "3/4",
@@ -178,7 +216,9 @@
       "RSI_breakout": 52,
       "Overall_Ranking": "4/5",
       "Confidence": 14,
-      "Signal": "Stay"
+      "Signal": "Stay",
+      "TRIGGER": "OFF",
+      "TRIGGER_REASON": "NONE"
     },
     "GBPCAD": {
       "Currency_Strength_Rank_all_pair": "3/7",
@@ -187,7 +227,9 @@
       "RSI_breakout": 61,
       "Overall_Ranking": "4/6",
       "Confidence": 34,
-      "Signal": "Stay"
+      "Signal": "Stay",
+      "TRIGGER": "OFF",
+      "TRIGGER_REASON": "NONE"
     },
     "GBPNZD": {
       "Currency_Strength_Rank_all_pair": "3/2",
@@ -196,7 +238,9 @@
       "RSI_breakout": 33,
       "Overall_Ranking": "4/2",
       "Confidence": 37,
-      "Signal": "Buy"
+      "Signal": "Buy",
+      "TRIGGER": "OFF",
+      "TRIGGER_REASON": "NONE"
     },
     "AUDCAD": {
       "Currency_Strength_Rank_all_pair": "1/7",
@@ -205,7 +249,9 @@
       "RSI_breakout": 72,
       "Overall_Ranking": "1/6",
       "Confidence": 75,
-      "Signal": "Sell"
+      "Signal": "Sell",
+      "TRIGGER": "OFF",
+      "TRIGGER_REASON": "NONE"
     },
     "AUDCHF": {
       "Currency_Strength_Rank_all_pair": "1/4",
@@ -214,7 +260,9 @@
       "RSI_breakout": 67,
       "Overall_Ranking": "1/5",
       "Confidence": 37,
-      "Signal": "Sell"
+      "Signal": "Sell",
+      "TRIGGER": "OFF",
+      "TRIGGER_REASON": "NONE"
     },
     "AUDNZD": {
       "Currency_Strength_Rank_all_pair": "1/2",
@@ -223,7 +271,9 @@
       "RSI_breakout": 62,
       "Overall_Ranking": "1/2",
       "Confidence": 24,
-      "Signal": "Stay"
+      "Signal": "Stay",
+      "TRIGGER": "OFF",
+      "TRIGGER_REASON": "NONE"
     },
     "CADCHF": {
       "Currency_Strength_Rank_all_pair": "7/4",
@@ -232,7 +282,9 @@
       "RSI_breakout": 43,
       "Overall_Ranking": "6/5",
       "Confidence": 25,
-      "Signal": "Stay"
+      "Signal": "Stay",
+      "TRIGGER": "OFF",
+      "TRIGGER_REASON": "NONE"
     },
     "NZDCAD": {
       "Currency_Strength_Rank_all_pair": "2/7",
@@ -241,7 +293,9 @@
       "RSI_breakout": 68,
       "Overall_Ranking": "2/6",
       "Confidence": 58,
-      "Signal": "Sell"
+      "Signal": "Sell",
+      "TRIGGER": "ON",
+      "TRIGGER_REASON": "T_3"
     },
     "NZDCHF": {
       "Currency_Strength_Rank_all_pair": "2/4",
@@ -250,7 +304,9 @@
       "RSI_breakout": 61,
       "Overall_Ranking": "2/5",
       "Confidence": 27,
-      "Signal": "Stay"
+      "Signal": "Stay",
+      "TRIGGER": "OFF",
+      "TRIGGER_REASON": "NONE"
     }
   }
 }

@@ -568,6 +568,90 @@
             border: none;
             white-space: nowrap;
         }
+
+                /* Update the existing .chart-thumbnail class */
+        .chart-thumbnail {
+            width: 60px;     /* Reduce from 80px to match your image */
+            height: 45px;    /* Reduce from 60px to maintain aspect ratio */
+            object-fit: cover;
+            border-radius: 4px;
+            border: 1px solid #ddd;  /* Reduce border from 2px to 1px */
+            transition: all 0.3s ease;
+            display: block;
+            margin: 0 auto;
+            cursor: pointer;
+        }
+
+        /* Update hover effect to be more subtle */
+        .chart-thumbnail:hover {
+            border-color: #007AFF;
+            transform: scale(1.02);  /* Reduce from 1.05 to 1.02 */
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);  /* Reduce shadow */
+        }
+
+        /* Update table cell padding for time column */
+        .data-table td:first-child {
+            background-color: #f8f9fa;
+            font-weight: bold;
+            color: #333;
+            width: 60px;     /* Reduce width */
+            padding: 12px 8px;  /* Reduce padding */
+            font-size: 0.9rem;  /* Slightly smaller font */
+        }
+
+        /* Update image cell padding */
+        .data-table td:not(:first-child) {
+            padding: 8px 4px;   /* Reduce padding around images */
+        }
+
+        /* Add modal improvements */
+        .modal-content {
+            margin: 3% auto;    /* Reduce top margin */
+            display: block;
+            max-width: 90%;     /* Slightly reduce max width */
+            max-height: 85%;    /* Reduce max height */
+            border-radius: 8px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+            animation: zoomIn 0.3s ease;
+        }
+
+        /* Make close button more visible */
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 25px;
+            color: #fff;
+            font-size: 35px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 1001;
+            background: rgba(0,0,0,0.5);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+        }
+
+        /* Add mobile responsiveness for thumbnails */
+        @media (max-width: 768px) {
+            .chart-thumbnail {
+                width: 45px;
+                height: 35px;
+            }
+            
+            .data-table td:first-child {
+                width: 45px;
+                padding: 8px 4px;
+                font-size: 0.8rem;
+            }
+            
+            .data-table td:not(:first-child) {
+                padding: 6px 2px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1488,7 +1572,32 @@
         startAutoRefreshAt05();
         startUpdateChecker();
     });
+    // Modal functionality for chart images
+    function showModal(imageSrc) {
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+        
+        modal.style.display = 'block';
+        modalImg.src = imageSrc;
+        
+        // Close modal when clicking outside the image
+        modal.onclick = function(event) {
+            if (event.target === modal) {
+                closeModal();
+            }
+        };
+    }
 
+    function closeModal() {
+        document.getElementById('imageModal').style.display = 'none';
+    }
+
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            closeModal();
+        }
+    });
     // Export functions for external use
     window.ForexDataManager = {
         refresh: refreshData,

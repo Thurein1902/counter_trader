@@ -6,7 +6,7 @@ from datetime import datetime
 
 # Configuration
 SOURCE_BASE_PATH = r"C:\Users\MT4ver2-e18-AZIzrF0D\AppData\Roaming\MetaQuotes\Terminal\7E59B46FD773C6FE7B889FC92951284D\MQL5\Files"
-DESTINATION_BASE_PATH = r"C:\Users\MT4ver2-e18-AZIzrF0D\CounterTrader\counter_trader"
+DESTINATION_BASE_PATH = r"C:\Users\MT4ver2-e18-AZIzrF0D\CounterTrader\counter_trader\data"
 GIT_REPO_PATH = r"C:\Users\MT4ver2-e18-AZIzrF0D\CounterTrader\counter_trader"
 
 # File configurations
@@ -120,6 +120,31 @@ def run_git_commands():
         print(f"Git error: {e}")
         return False
 
+def run_git_commands_all():
+    """Execute git commands for all files at 23:00"""
+    try:
+        os.chdir(GIT_REPO_PATH)
+        
+        # Add all changes
+        subprocess.run(["git", "add", "."], check=True)
+        
+        # Commit with timestamp
+        commit_message = f"Scheduled commit - {datetime.now().strftime('%Y-%m-%d %H:%M')}"
+        subprocess.run(["git", "commit", "-m", commit_message], check=True)
+        
+        # Push to remote
+        subprocess.run(["git", "push", "-u", "origin", "main"], check=True)
+        
+        print("Git commands executed successfully for all files")
+        return True
+        
+    except subprocess.CalledProcessError as e:
+        print(f"Git command failed: {e}")
+        return False
+    except Exception as e:
+        print(f"Git error: {e}")
+        return False
+
 def move_files():
     """Process both JSON files"""
     success_count = 0
@@ -150,19 +175,32 @@ def main():
     print("Checking file sources...")
     check_file_existence()
     print("Will copy files at minute 4 of each hour")
+    print("Will execute git commands at 23:00 daily")
     print("-" * 50)
     
     last_hour = None
+    last_date = None
     
     while True:
         try:
             now = datetime.now()
+            current_date = now.date()
             
-            # Trigger at minute 4 of each hour
+            # Trigger file copying at minute 4 of each hour
             if now.minute == 4 and now.hour != last_hour:
-                print(f"\nTriggered at {now.strftime('%Y-%m-%d %H:%M:%S')}")
+                print(f"\nFile copy triggered at {now.strftime('%Y-%m-%d %H:%M:%S')}")
                 move_files()
                 last_hour = now.hour
+                print("-" * 50)
+                
+                # Sleep for a minute to avoid duplicate triggers
+                time.sleep(60)
+            
+            # Trigger git commands at 23:00 daily
+            if now.hour == 23 and now.minute == 0 and current_date != last_date:
+                print(f"\nGit commands triggered at {now.strftime('%Y-%m-%d %H:%M:%S')}")
+                run_git_commands_all()
+                last_date = current_date
                 print("-" * 50)
                 
                 # Sleep for a minute to avoid duplicate triggers

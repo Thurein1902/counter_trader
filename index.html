@@ -1573,6 +1573,33 @@
         startUpdateChecker();
     });
     
+    // Helper function to extract date and time from image filename
+    function getImageTitle(imageSrc) {
+        try {
+            // Extract filename from path: images/[2025_08_28][0000].png
+            const filename = imageSrc.split('/').pop();
+            const match = filename.match(/\[(\d{4})_(\d{2})_(\d{2})\]\[(\d{4})\]/);
+            
+            if (match) {
+                const [, year, month, day, time] = match;
+                
+                // Convert month and day to Japanese format
+                const monthDay = `${parseInt(month)}月${parseInt(day)}日`;
+                
+                // Convert time to hour format
+                const hour = parseInt(time.substring(0, 2));
+                const timeStr = `${hour}:00`;
+                
+                return `${monthDay}, ${timeStr} のエントリーしてから240時間分のチャート画像`;
+            }
+        } catch (error) {
+            console.log('Could not parse image filename:', imageSrc);
+        }
+        
+        // Fallback title if parsing fails
+        return 'チャート画像';
+    }
+
     // Alert box style modal functionality for chart images
     function showModal(imageSrc) {
         // Remove existing modal if present
@@ -1623,7 +1650,7 @@
         `;
         
         const title = document.createElement('h3');
-        title.textContent = 'チャート画像';
+        title.textContent = getImageTitle(imageSrc);
         title.style.cssText = `
             margin: 0;
             font-size: 1.1rem;
@@ -1764,6 +1791,7 @@
             }
         `;
     }
+    
     // Export functions for external use
     window.ForexDataManager = {
         refresh: refreshData,

@@ -100,8 +100,8 @@ def run_git_commands():
         os.chdir(GIT_REPO_PATH)
         
         # Add both files
-        subprocess.run(["git", "add", "fx_signals_10pair.json"], check=True)
-        subprocess.run(["git", "add", "fx_signals_28pair.json"], check=True)
+        subprocess.run(["git", "add", "data/fx_signals_10pair.json"], check=True)
+        subprocess.run(["git", "add", "data/fx_signals_28pair.json"], check=True)
         
         # Commit with timestamp
         commit_message = f"Update forex signals - {datetime.now().strftime('%Y-%m-%d %H:%M')}"

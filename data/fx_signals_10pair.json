@@ -37,7 +37,7 @@
       "Currency_Strength_Rank_all_pair": "3/2",
       "CCI_Currency_Strength_Rank_all_pair": "5/1",
       "BB_percent_ranking": "4/2",
-      "RSI_breakout": 48,
+      "RSI_breakout": 47,
       "Overall_Ranking": "4/2",
       "Confidence": 45,
       "Signal": "Stay",
@@ -48,7 +48,7 @@
       "Currency_Strength_Rank_all_pair": "5/1",
       "CCI_Currency_Strength_Rank_all_pair": "3/2",
       "BB_percent_ranking": "5/1",
-      "RSI_breakout": 32,
+      "RSI_breakout": 33,
       "Overall_Ranking": "5/1",
       "Confidence": 68,
       "Signal": "Buy",
@@ -63,8 +63,8 @@
       "Overall_Ranking": "3/1",
       "Confidence": 78,
       "Signal": "Buy",
-      "TRIGGER": "OFF",
-      "TRIGGER_REASON": "NONE"
+      "TRIGGER": "ON",
+      "TRIGGER_REASON": "T_3"
     },
     "AUDJPY": {
       "Currency_Strength_Rank_all_pair": "3/1",

@@ -8,16 +8,16 @@
       "Overall_Ranking": "3/5",
       "Confidence": 52,
       "Signal": "Sell",
-      "TRIGGER": "ON",
-      "TRIGGER_REASON": "T_3"
+      "TRIGGER": "OFF",
+      "TRIGGER_REASON": "NONE"
     },
     "EURUSD": {
       "Currency_Strength_Rank_all_pair": "4/3",
       "CCI_Currency_Strength_Rank_all_pair": "4/2",
       "BB_percent_ranking": "4/3",
-      "RSI_breakout": 43,
+      "RSI_breakout": 48,
       "Overall_Ranking": "4/3",
-      "Confidence": 35,
+      "Confidence": 30,
       "Signal": "Stay",
       "TRIGGER": "OFF",
       "TRIGGER_REASON": "NONE"
@@ -26,9 +26,9 @@
       "Currency_Strength_Rank_all_pair": "2/3",
       "CCI_Currency_Strength_Rank_all_pair": "3/2",
       "BB_percent_ranking": "2/3",
-      "RSI_breakout": 52,
+      "RSI_breakout": 56,
       "Overall_Ranking": "2/3",
-      "Confidence": 25,
+      "Confidence": 30,
       "Signal": "Stay",
       "TRIGGER": "OFF",
       "TRIGGER_REASON": "NONE"
@@ -48,10 +48,10 @@
       "Currency_Strength_Rank_all_pair": "4/5",
       "CCI_Currency_Strength_Rank_all_pair": "4/5",
       "BB_percent_ranking": "4/5",
-      "RSI_breakout": 64,
+      "RSI_breakout": 66,
       "Overall_Ranking": "4/5",
-      "Confidence": 24,
-      "Signal": "Stay",
+      "Confidence": 34,
+      "Signal": "Sell",
       "TRIGGER": "OFF",
       "TRIGGER_REASON": "NONE"
     },
@@ -59,12 +59,12 @@
       "Currency_Strength_Rank_all_pair": "2/5",
       "CCI_Currency_Strength_Rank_all_pair": "3/5",
       "BB_percent_ranking": "2/5",
-      "RSI_breakout": 69,
+      "RSI_breakout": 71,
       "Overall_Ranking": "2/5",
-      "Confidence": 61,
+      "Confidence": 76,
       "Signal": "Sell",
-      "TRIGGER": "ON",
-      "TRIGGER_REASON": "T_3"
+      "TRIGGER": "OFF",
+      "TRIGGER_REASON": "NONE"
     },
     "AUDJPY": {
       "Currency_Strength_Rank_all_pair": "1/5",
@@ -92,9 +92,9 @@
       "Currency_Strength_Rank_all_pair": "4/1",
       "CCI_Currency_Strength_Rank_all_pair": "4/1",
       "BB_percent_ranking": "4/1",
-      "RSI_breakout": 34,
+      "RSI_breakout": 40,
       "Overall_Ranking": "4/1",
-      "Confidence": 70,
+      "Confidence": 60,
       "Signal": "Stay",
       "TRIGGER": "OFF",
       "TRIGGER_REASON": "NONE"
@@ -103,9 +103,9 @@
       "Currency_Strength_Rank_all_pair": "2/1",
       "CCI_Currency_Strength_Rank_all_pair": "3/1",
       "BB_percent_ranking": "2/1",
-      "RSI_breakout": 44,
+      "RSI_breakout": 49,
       "Overall_Ranking": "2/1",
-      "Confidence": 26,
+      "Confidence": 21,
       "Signal": "Stay",
       "TRIGGER": "OFF",
       "TRIGGER_REASON": "NONE"

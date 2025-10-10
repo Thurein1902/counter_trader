@@ -1,12 +1,12 @@
 {
   "forexData": {
     "USDJPY": {
-      "Currency_Strength_Rank_all_pair": "1/5",
+      "Currency_Strength_Rank_all_pair": "1/4",
       "CCI_Currency_Strength_Rank_all_pair": "2/1",
       "BB_percent_ranking": "1/2",
-      "RSI_breakout": 67,
+      "RSI_breakout": 69,
       "Overall_Ranking": "1/2",
-      "Confidence": 45,
+      "Confidence": 43,
       "Signal": "Sell",
       "TRIGGER": "ON",
       "TRIGGER_REASON": "T_3"
@@ -15,21 +15,21 @@
       "Currency_Strength_Rank_all_pair": "3/1",
       "CCI_Currency_Strength_Rank_all_pair": "3/2",
       "BB_percent_ranking": "3/1",
-      "RSI_breakout": 36,
+      "RSI_breakout": 34,
       "Overall_Ranking": "3/1",
-      "Confidence": 45,
+      "Confidence": 55,
       "Signal": "Stay",
       "TRIGGER": "OFF",
       "TRIGGER_REASON": "NONE"
     },
     "GBPUSD": {
-      "Currency_Strength_Rank_all_pair": "4/1",
+      "Currency_Strength_Rank_all_pair": "5/1",
       "CCI_Currency_Strength_Rank_all_pair": "5/2",
       "BB_percent_ranking": "5/1",
-      "RSI_breakout": 34,
+      "RSI_breakout": 32,
       "Overall_Ranking": "5/1",
-      "Confidence": 72,
-      "Signal": "Stay",
+      "Confidence": 73,
+      "Signal": "Buy",
       "TRIGGER": "OFF",
       "TRIGGER_REASON": "NONE"
     },
@@ -37,18 +37,18 @@
       "Currency_Strength_Rank_all_pair": "2/1",
       "CCI_Currency_Strength_Rank_all_pair": "4/2",
       "BB_percent_ranking": "4/1",
-      "RSI_breakout": 42,
+      "RSI_breakout": 40,
       "Overall_Ranking": "4/1",
-      "Confidence": 41,
+      "Confidence": 46,
       "Signal": "Stay",
       "TRIGGER": "OFF",
       "TRIGGER_REASON": "NONE"
     },
     "EURJPY": {
-      "Currency_Strength_Rank_all_pair": "3/5",
+      "Currency_Strength_Rank_all_pair": "3/4",
       "CCI_Currency_Strength_Rank_all_pair": "3/1",
       "BB_percent_ranking": "3/2",
-      "RSI_breakout": 55,
+      "RSI_breakout": 56,
       "Overall_Ranking": "3/2",
       "Confidence": 30,
       "Signal": "Stay",
@@ -56,21 +56,21 @@
       "TRIGGER_REASON": "NONE"
     },
     "GBPJPY": {
-      "Currency_Strength_Rank_all_pair": "4/5",
+      "Currency_Strength_Rank_all_pair": "5/4",
       "CCI_Currency_Strength_Rank_all_pair": "5/1",
       "BB_percent_ranking": "5/2",
       "RSI_breakout": 51,
       "Overall_Ranking": "5/2",
-      "Confidence": 37,
+      "Confidence": 40,
       "Signal": "Stay",
       "TRIGGER": "OFF",
       "TRIGGER_REASON": "NONE"
     },
     "AUDJPY": {
-      "Currency_Strength_Rank_all_pair": "2/5",
+      "Currency_Strength_Rank_all_pair": "2/4",
       "CCI_Currency_Strength_Rank_all_pair": "4/1",
       "BB_percent_ranking": "4/2",
-      "RSI_breakout": 55,
+      "RSI_breakout": 56,
       "Overall_Ranking": "4/2",
       "Confidence": 38,
       "Signal": "Stay",
@@ -78,10 +78,10 @@
       "TRIGGER_REASON": "NONE"
     },
     "EURGBP": {
-      "Currency_Strength_Rank_all_pair": "3/4",
+      "Currency_Strength_Rank_all_pair": "3/5",
       "CCI_Currency_Strength_Rank_all_pair": "3/5",
       "BB_percent_ranking": "3/5",
-      "RSI_breakout": 56,
+      "RSI_breakout": 58,
       "Overall_Ranking": "3/5",
       "Confidence": 28,
       "Signal": "Stay",
@@ -100,12 +100,12 @@
       "TRIGGER_REASON": "NONE"
     },
     "GBPAUD": {
-      "Currency_Strength_Rank_all_pair": "4/2",
+      "Currency_Strength_Rank_all_pair": "5/2",
       "CCI_Currency_Strength_Rank_all_pair": "5/4",
       "BB_percent_ranking": "5/4",
-      "RSI_breakout": 44,
+      "RSI_breakout": 42,
       "Overall_Ranking": "5/4",
-      "Confidence": 29,
+      "Confidence": 31,
       "Signal": "Stay",
       "TRIGGER": "OFF",
       "TRIGGER_REASON": "NONE"
